@@ -46,7 +46,7 @@
 
                             <button
                                 class="w-full md:w-1/2 mt-5 inline-flex items-center justify-center px-6 py-3 border border-transparent shadow-sm text-base uppercase tracking-widest text-white bg-eazy-pink transition-all duration-300 hover:bg-eazy-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-eazy-blue">
-                                Request
+                                {{pll_e('Request')}}
                             </button>
                         </a>
                     </div>
@@ -62,7 +62,7 @@
             <div class="max-w-screen-xl w-full inside">
 
                 <p class="uppercase pb-5">
-                    Other products you might like
+                    {{pll_e('Other products you might like')}}  
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 ">
                     {% for post in prodotti %}

@@ -3,13 +3,16 @@
 {% block content %}
 <div class="content-wrapper">
     <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+    {% if post.thumbnail.src %}
         <img src="{{ post.thumbnail.src }}" class="w-full h-96 object-cover">
+    {% endif %}
+
         <section class="article-content py-16 md:py-32">
             <div class="max-w-screen-xl w-full md:flex  inside">
                 <div class="md:w-1/2 md:sticky top-32 pr-16 pb-10 md:pb-0">
                     <div class="text-sm">
                         <a href="{{site.link}}" class="hover:underline">Eazy Group</a> >
-                        <a href="{{site.link}}/news" class="hover:underline">News and Insight</a> >
+                        <a href="{{site.link}}/news" class="hover:underline">{{pll_e('News and Insight')}}</a> >
                         <a href="#" class="underline">{{post.title}}</a>
                     </div>
 
@@ -43,7 +46,7 @@
             </div>
         </section>
         {% block news_list %}
-        {% include 'partial/news-list.twig' with {'type':'other'} %}
+        {% include 'partial/news-list.twig' with {'type':'Other'} %}
         {% endblock %}
     </article>
 </div><!-- /content-wrapper -->

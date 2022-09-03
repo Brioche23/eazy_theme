@@ -206,7 +206,7 @@ class StarterSite extends Timber\Site
 			);
 			wp_register_script('alpine_plugin', 'https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js', null, null, true);
 			wp_register_script('alpine', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', null, null, true);
-
+			wp_nav_menu(array('theme_location' => 'primary'));
 
 			wp_enqueue_script('alpine_plugin');
 			wp_enqueue_script('alpine');
@@ -257,11 +257,18 @@ add_action('init', function () {
 	pll_register_string('market_movement', 'Market Movement');
 	pll_register_string('inquiry', 'Please send us your inquiry!');
 	pll_register_string('latest', 'Latest');
+	pll_register_string('other', 'Other');
 	pll_register_string('all_products', 'All products');
 	pll_register_string('disc_collab', 'Let’s discover our collaborations');
 	pll_register_string('disc_services', 'Let’s discover our services');
 	pll_register_string('contact_us', 'Contact us');
+	pll_register_string('request', 'Request');
+	pll_register_string('other_products', 'Other products you might like');
+	pll_register_string('news_insights', 'News and Insight');
 	pll_register_string('contacts', 'Contacts');
+	pll_register_string('find_us', 'Find us on the map');
+	pll_register_string('terms', 'Terms & Conditions');
+	pll_register_string('blank', 'blank');
 });
 
 

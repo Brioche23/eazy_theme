@@ -63,6 +63,9 @@ switch ($name) {
     case "contatti-it":
         $pName = "contatti";
         break;
+    case "shop-it":
+        $pName = "shop";
+        break;
     default:
         $pName = $timber_post->post_name;
 }
