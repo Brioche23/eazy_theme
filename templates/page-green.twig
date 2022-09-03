@@ -1,0 +1,143 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="content-wrapper">
+    <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+        {# hero #}
+        <section class="hero ">
+            {% include "partial/hero.twig" with {'post': post} %}
+        </section>
+        <!-- about -->
+        <section class="bg-white py-16 md:py-24 text-eazy-dark">
+            <div class="max-w-screen-xl md:flex md:space-x-20 inside">
+                <div class="md:w-1/2">
+                    <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">{{ pll_e('about') }}</h5>
+                    <p class="text-h2 text-eazy-blue">{{post.meta('about')}}
+                    </p>
+                </div>
+                <div class="md:w-1/2 pt-4 md:pt-8">
+                    <p class="">
+                        {{post.meta('abstract')}}
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Shop -->
+        <section class="bg-eazy-cream py-16 md:py-32 text-eazy-dark">
+
+            <div class="max-w-screen-xl inside">
+                <div class="flex justify-between items-center pb-16">
+                    <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">Eazy Green Shop</h5>
+                    <a href="{{site.link}}/shop" class="text-sm text-eazy-blue">{{ pll_e('All products') }} ></a>
+                </div>
+                <div class="md:w-2/3 space-y-4">
+                    <h2 class="text-h2 text-eazy-pink">{{post.meta('shop_headline')}}</h2>
+                    <p class="text-black text-base">{{post.meta('shop_text')}}</p>
+                </div>
+                <div class="grid sm:grid-cols-2 md:grid-cols-5 md:grid-rows-2 place-content-between gap-5 pt-12">
+                    <div class="aspect-square sm:aspect-auto md:row-span-2 sm:col-span-2 ">
+
+                        <img src="{{Image(post.meta('shop_image')).src | resize(750)}}"
+                            class="h-full w-full object-cover" alt="">
+                    </div>
+                    {% for post in prodotti %}
+                    <div class="">
+                        <a href="{{post.link}}">
+                            <div class="bg-eazy-pink aspect-square ">
+                                {% if post.get_thumbnail %}
+                                <img src={{post.thumbnail.src| resize(500) }} alt=""
+                                    class="h-full w-full object-cover" />
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="py-4 px-0 w-full text-left">
+                            <p class="text-sm font-medium text-eazy-pink px-0">{{post.title}}</p>
+                            <p class="text-sm text-eazy-dark px-0">{{post.meta('tipologia')}}</p>
+
+                        </div>
+                        <span>
+                            <hr />
+                        </span>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        <!-- Services -->
+        <section class="bg-white py-16 md:py-32 text-eazy-dark">
+            <div class="max-w-screen-xl space-y-4 inside">
+                <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">Eazy Green Collaboration</h5>
+                <p class="text-h2 text-eazy-blue">{{post.meta('collab_h2')}} </p>
+
+                <p class="md:w-2/3">
+                    {{post.meta('collab_text')}}
+                </p>
+            </div>
+        </section>
+
+        {# Collaborations #}
+        <section class="bg-eazy-cream py-16 md:py-32 text-eazy-dark">
+            <div class="max-w-screen-xl inside">
+                <h5 class="text-sm uppercase tracking-widest pb-12">{{ pll_e('Let’s discover our collaborations') }}</h5>
+                {% set i = 0 %}
+                {% for item in post.meta('collaborations') %}
+                <a href="#"
+                    class="w-full md:flex group hover:shadow-xl transition-shadow duration-300 ease-in-out my-6 md:mb-12">
+                    <div
+                        class="aspect-[4/3] bg-eazy-blue md:w-1/2 overflow-hidden {{  i % 2  == 0 ? 'md:order-1' : 'md:order-2' }}">
+                        <img src={{ Image(item.image).src }} class="object-cover h-full" alt="" />
+                    </div>
+                    <div
+                        class="md:w-1/2 bg-white px-12 py-24 flex flex-col justify-between {{  i % 2  == 0 ? 'md:order-2' : 'md:order-1' }}">
+                        <div
+                            class="transform group-hover:-translate-y-5 lg:group-hover:translate-y-5 duration-300 ease-in-out mb-3">
+                            <h6 class="text-sm uppercase tracking-widest pb-3">{{item.name}}</h6>
+                            <p class="text-xl lg:text-3xl text-eazy-blue">{{item.abstract}}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm uppercase tracking-widest underline">{{ pll_e('Contact us') }}</p>
+                        </div>
+                    </div>
+
+                    {% set i = i + 1 %}
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        {# Green Goals #}
+        <section class="py-16 md:py-32 text-eazy-dark">
+            <div class="max-w-screen-xl inside">
+                <h5 class="text-sm uppercase tracking-widest pb-4">Eazy Green Goals</h5>
+                <p class="text-h2 text-eazy-blue pb-6">{{post.meta('green_goals_abstract')}}
+                <p class="">
+                    {{post.meta('green_goals_text')}}
+                </p>
+                <div class="flex mx-auto
+                 max-w-2xl justify-between pt-16">
+
+
+                    {% for icon in post.meta('green_goals_icons') %}
+
+                    <figure class="align-middle space-y-8">
+                        <img src={{ Image(icon.icon).src }} class=" h-28 mx-auto" alt="" />
+                        <figcaption class="text-center text-lg">{{icon.text}}</figcaption>
+                    </figure>
+
+
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+        {# Keep in Touch #}
+        {% include "partial/keep-in-touch.twig" with {'post': post} %}
+
+
+        {{ function('wp_footer') }}
+    </article>
+</div><!-- /content-wrapper -->
+{% endblock %}

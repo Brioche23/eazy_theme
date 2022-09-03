@@ -1,0 +1,25 @@
+{% extends "tease.twig" %}
+
+{% block content %}
+<a href="{{post.link}}" class="border-t border-eazy-dark group flex flex-col h-full place-content-between">
+
+	<div>
+
+		<div class="bg-eazy-blue w-full aspect-video">
+			{% if post.thumbnail %}
+			<img src="{{ post.thumbnail.src|resize(500) }}" class="w-full h-full object-cover">
+			{% endif %}
+		</div>
+		<h6 class="text-xl text-eazy-blue pt-4">{{post.title}}</h6>
+	</div>
+	<div class="text-xs ">
+		<img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+			class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out" alt="" />
+		{% for term in post.terms('category') %}
+		<span>{{ term.name }}</span> &ndash;
+		{% endfor %}
+		<!-- <span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&ndash;</span> -->
+		<time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date |date('F j, Y')}}</time>
+	</div>
+</a>
+{% endblock %}

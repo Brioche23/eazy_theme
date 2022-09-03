@@ -1,0 +1,79 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="content-wrapper">
+    <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+        <section class="article-content py-32">
+            <div class="max-w-screen-xl w-full inside">
+                <div class="text-sm md:w-1/2">
+                    <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a> >
+                    <a href="{{site.link}}/shop" class="hover:underline">Eazy Green Shop</a> >
+                    <a href="#" class="underline">{{post.title}}</a>
+                </div>
+
+                <div class="md:flex pt-5 w-full" x-data="{imageUrl: '{{post.thumbnail.src}}'}">
+                    <div class="md:w-24 flex md:block space-y-0 space-x-3 md:space-x-0 md:space-y-3 pb-3 md:pr-3">
+
+                        {% for image in post.meta('immagini') %}
+                        <div class=" w-24 md:w-full aspect-square cursor-pointer"
+                            @mouseover="imageUrl='{{ Image(image) | resize(800) }}'">
+                            <img src="{{ Image(image) | resize(200) }}" class="w-full h-full object-cover" />
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="aspect-square md:w-1/2">
+                        <img :src="imageUrl" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="md:w-1/2 pt-5 md:pt-0 md:ml-24 ">
+
+                        <div class="flex  place-content-between w-full md:w-1/2">
+
+                            <p class="text-base  text-eazy-pink ">
+                                {{post.title}}
+                            </p>
+                            <p class="text-base text-eazy-pink ">
+                                {{post.meta('prezzo')}}€
+                            </p>
+                        </div>
+
+                        <p class="block w-full md:w-1/2 py-5 text-sm leading-5">
+                            {{post.meta('descrizione')}}
+
+                        </p>
+
+                        <a href="mailto:">
+
+                            <button
+                                class="w-full md:w-1/2 mt-5 inline-flex items-center justify-center px-6 py-3 border border-transparent shadow-sm text-base uppercase tracking-widest text-white bg-eazy-pink transition-all duration-300 hover:bg-eazy-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-eazy-blue">
+                                Request
+                            </button>
+                        </a>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+        <section class="pb-16  bg-white">
+            <div class="max-w-screen-xl w-full inside">
+
+                <p class="uppercase pb-5">
+                    Other products you might like
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 ">
+                    {% for post in prodotti %}
+                    {% include ['mini-tease-'~post.post_type~'.twig',
+                    'tease.twig'] %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </section>
+
+    </article>
+</div><!-- /content-wrapper -->
+{% endblock %}

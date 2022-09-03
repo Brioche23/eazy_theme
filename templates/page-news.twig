@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="content-wrapper">
+    <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+        <section class="max-w-screen-xl inside py-16 md:py-32 ">
+            <div class=" pb-16">
+                <div class="text-sm">
+                    <a href="{{site.link}}" class="hover:underline">Eazy Group</a> >
+                    <a href="{{site.link}}/news" class="underline">News and Insight</a>
+                </div>
+                <h2 class="text-h2 text-eazy-blue">News and Insights</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
+                {% for post in posts %}
+                {% include ['tease-'~post.post_type~'.twig',
+                'tease.twig'] %}
+                {% endfor %}
+            </div>
+        </section>
+
+
+        {{ function('wp_footer') }}
+    </article>
+</div><!-- /content-wrapper -->
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="content-wrapper">
+    <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+        {# hero #}
+        <section
+            class="hero bg-eazy-dark relative text-white w-full h-screen md:h-auto md:aspect-video md:overflow-hidden z-0">
+            <img src={{ Image(post.meta('hero_image')).src }} alt="boat" class="object-cover h-full md:w-full " />
+            <div class="absolute bottom-0 w-full">
+                <div class="max-w-screen-xl pb-32 md:pb-16 lg:pb-32 inside">
+                    <div class="md:w-2/3">
+                        <h5 class="text-xs md:text-sm font-medium uppercase tracking-widest pb-6">
+                            {{post.meta('hero_headline')}}</h5>
+                        <h1 class="font-display text-3xl lg:text-5xl pb-12">{{post.meta('hero_abstract')}}</h1>
+                    </div>
+                    {# todo mettere link #}
+                    <div class="flex space-x-5">
+                        <a href="#"
+                            class="bg-white hover:bg-eazy-blue text-eazy-blue hover:text-white text-sm rounded-full px-5 py-3 tracking-wide transition ease-in-out duration-300">Eazy
+                            Bunker</a>
+                        <a href="#"
+                            class="bg-white hover:bg-eazy-blue text-eazy-blue hover:text-white text-sm rounded-full px-5 py-3 tracking-wide transition ease-in-out duration-300">Eazy
+                            Green</a>
+                        <a href="#"
+                            class="bg-white hover:bg-eazy-blue text-eazy-blue hover:text-white text-sm rounded-full px-5 py-3 tracking-wide transition ease-in-out duration-300">Eazy
+                            Yachting</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- about -->
+        <section class="bg-white py-16 md:py-32 text-eazy-dark">
+            <div class="max-w-screen-xl md:flex md:space-x-32 md:items-center inside">
+                <div class="md:w-1/2">
+                <p>{{post.post_name}}!</p>
+                <p>{{pname}}!</p>
+
+                    <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">About</h5>
+                    <p class="text-2xl md:text-4xl text-eazy-blue">{{post.meta('about')}}
+                    </p>
+                </div>
+                <div class="md:w-1/2 pt-4 md:pt-0">
+                    <p class="">
+                        {{post.meta('abstract')}}
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Companies -->
+        <!-- TODO Switch order -->
+        <section class="bg-eazy-cream py-16 md:py-32 text-eazy-dark">
+            <div class="max-w-screen-xl inside">
+                <h5 class="text-sm uppercase tracking-widest pb-12">Let's discover our companies</h5>
+                {% set i = 0 %}
+                {% for item in post.meta('companies') %}
+                <a href="#"
+                    class="  w-full md:flex group hover:shadow-xl transition-shadow duration-300 ease-in-out my-6 md:mb-12">
+                    <div
+                        class="aspect-[4/3] bg-eazy-blue md:w-1/2 overflow-hidden {{  i % 2  == 0 ? 'md:order-1' : 'md:order-2' }}">
+                        <img src={{ Image(item.image).src }} alt="" />
+                    </div>
+                    <div
+                        class="md:w-1/2 bg-white px-12 py-24 flex flex-col justify-between {{  i % 2  == 0 ? 'md:order-2' : 'md:order-1' }}">
+                        <div
+                            class="transform group-hover:-translate-y-5 lg:group-hover:translate-y-5 duration-300 ease-in-out mb-3">
+                            <h6 class="text-sm uppercase tracking-widest pb-3">{{item.name}}</h6>
+                            <p class="text-xl lg:text-3xl text-eazy-blue">{{item.abstract}}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm uppercase tracking-widest">Discover {{item.name}}</p>
+                            <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+                                class="pt-3 transform group-hover:translate-x-6 duration-300 ease-in-out" alt="arrow" />
+                        </div>
+                    </div>
+
+                    {% set i = i + 1 %}
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- Team -->
+        <!-- TODO Integrate first member -->
+        <section class="bg-white py-16 md:py-32 text-eazy-dark">
+            <div class="max-w-screen-xl inside">
+                <div class="max-w-screen-xl mx-auto md:flex md:space-x-32 md:items-center pb-8">
+                    <div class="md:w-1/2">
+                        <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">Team</h5>
+                        <p class="text-2xl md:text-4xl text-eazy-blue">{{post.meta('team_h2')}}</p>
+                    </div>
+                    <div class="md:w-1/2 pt-4 md:pt-0">
+                        <p>{{post.meta('team_abstract')}}
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16  md:py-32 content-start"
+                    x-data="{ active: false }">
+                    <div class="bg-eazy-blue aspect-square w-full"></div>
+                    <div class="md:col-span-2 flex flex-col justify-between">
+                        <div>
+                            <p class="font-medium text-eazy-blue">Edoardo Zucco</p>
+                            <p class="font-light text-eazy-blue">CEO & Founder</p>
+                            <p class="pt-4">
+                                Edoardo Zucco, CEO and Founder of the Eazy Group Companies founded Eazy Bunker after
+                                many years of experience in the luxury yacht market as a fuel trader manager. Thanks
+                                to
+                                his
+                                experience in this market and his studies in Natural Sciences and Marine Biology he
+                                founded the first all Green Company in the yachting market, Eazy Green. A few years
+                                later he
+                                completed the group with Eazy Yachting, a luxury yacht agency. His mission is to
+                                supply
+                                the luxury yacht market with every service, remaining faithful to his ethics and his
+                                values by
+                                constantly engaging in environmental sustainability.
+                            </p>
+                        </div>
+                        <div class="w-2/3">
+                            <p class="text-eazy-blue text-lg md:text-2xl pt-4">“We supply yachts worldwide with full
+                                commitment to
+                                environmental sustainability.”</p>
+                        </div>
+                    </div>
+                    <!-- Team member-->
+
+                    {% for member in post.meta('team_members') %}
+                    <div class="my-5" x-data="{
+                        open: false,
+                        toggle() {
+                          if (this.open) {return this.close()}
+                          this.open = true
+                        },
+                        close(focusAfter) {
+                          if (! this.open) return
+                          this.open = false
+                          focusAfter && focusAfter.focus()
+                        }
+                      }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                        x-on:focusin.window="! $refs.bio.contains($event.target) " x-id="['dropdown-button']">
+                        <div class="bg-eazy-blue aspect-square w-full"></div>
+
+                        <button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left"
+                            x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                            :aria-controls="$id('dropdown-button')" aria-expanded="true"
+                            aria-controls="dropdown-button-1">
+                            <div>
+                                <p class="font-medium text-eazy-blue px-0">{{member.name}}</p>
+                                <p class="text-eazy-blue px-0">{{member.role}}</p>
+                            </div>
+                            <div><span x-show="open" aria-hidden="true" class="">&minus;</span> <span x-show="!open"
+                                    aria-hidden="true" class="">&plus;</span></div>
+                        </button>
+                        <span x-show="!open" aria-hidden="true">
+                            <hr />
+                        </span>
+                        <div x-ref="bio" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
+                            <div class="py-4 font-light text-eazy-dark border-b border-eazy-dark">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In magnam quod natus
+                                deleniti
+                                architecto eaque consequuntur ex, illo neque iste repellendus modi, quasi ipsa
+                                commodi
+                                saepe?
+                                Provident ipsa nulla earum.
+                                {{member.bio}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        {# News #}
+        <!-- TODO Da fare quando ci saranno  -->
+        <section class="bg-eazy-cream text-eazy-dark">
+            <div class="max-w-screen-xl inside py-16 md:py-32 ">
+                <div class="flex justify-between items-center pb-16">
+                    <h5 class="text-sm uppercase tracking-widest">Latest news</h5>
+                    <a href="#" class="text-sm text-eazy-blue">All news ></a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
+                    <a href="#" class="border-t border-eazy-dark group flex flex-col justify-between">
+                        <div>
+                            <h6 class="text-xl text-eazy-blue pt-4">Xmaster 2019</h6>
+                        </div>
+                        <div class="text-xs">
+                            <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+                                class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out"
+                                alt="" />
+                            <p>Eazy Bunker — July 2019</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="border-t border-eazy-dark group flex flex-col justify-between">
+                        <div>
+                            <h6 class="text-xl text-eazy-blue pt-4">MYBA Charter Show Barcelona 2019</h6>
+                        </div>
+                        <div class="text-xs">
+                            <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+                                class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out"
+                                alt="" />
+                            <p>Eazy Group — June 2019</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="border-t border-eazy-dark group flex flex-col justify-between">
+                        <div>
+                            <h6 class="text-xl text-eazy-blue pt-4">See You Event at Marina Genova, Italy</h6>
+                        </div>
+                        <div class="text-xs">
+                            <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+                                class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out"
+                                alt="" />
+                            <p>Eazy Green — April 2019</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="border-t border-eazy-dark group flex flex-col justify-between">
+                        <div>
+                            <h6 class="text-xl text-eazy-blue pt-4">New partnership with Seabin Project</h6>
+                        </div>
+                        <div class="text-xs">
+                            <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+                                class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out"
+                                alt="" />
+                            <p>Eazy Green — April 2019</p>
+                        </div>
+                    </a>
+                    <a href="#" class="border-t border-eazy-dark group flex flex-col justify-between">
+                        <div>
+                            <h6 class="text-xl text-eazy-blue pt-4">New Biodegradable Business Card</h6>
+                        </div>
+                        <div class="text-xs">
+                            <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+                                class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out"
+                                alt="" />
+                            <p>Eazy Green — April 2019</p>
+                        </div>
+                    </a>
+                    <a href="#" class="border-t border-eazy-dark group flex flex-col justify-between">
+                        <div>
+                            <h6 class="text-xl text-eazy-blue pt-4">6th Captains' meeting</h6>
+                        </div>
+                        <div class="text-xs">
+                            <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+                                class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out"
+                                alt="" />
+                            <p>Eazy Green — April 2019</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Partners -->
+        {% if post.meta('partners') %}
+        <section class="bg-white text-eazy-dark">
+            <div class="max-w-screen-xl inside py-16 md:pt-32">
+                <h5 class="text-sm uppercase tracking-widest pb-3">Partners</h5>
+                <div class="flex flex-wrap items-center md:justify-between space-x-5 space-y-5 pt-16 md:pb-32">
+                    {% for partner in post.meta('partners') %}
+                    <div class="h-full">
+                        <a href="{{partner.url}}"><img src="{{ Image(partner.logo).src }}" alt="logo"
+                                class="h-24 md:h-32" /></a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+        {% endif %}
+        {% block form %}
+        {% include 'partial/form.twig' %}
+        {{ function('wp_footer') }}
+        {% endblock %}
+    </article>
+</div><!-- /content-wrapper -->
+{% endblock %}

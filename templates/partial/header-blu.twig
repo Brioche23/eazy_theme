@@ -1,0 +1,13 @@
+<header class="header absolute top-0 w-full inside z-10 bg-eazy-blue ">
+
+    <div class="wrapper max-w-screen-xl mx-auto flex place-content-center md:justify-between items-center py-3 md:py-6 ">
+        <a href="{{homelang}}"><img src="{{ site.theme.link }}/static/assets/svg/EZG_logo.svg" class="h-8 md:h-10 w-auto"
+                alt="Eazy Group Logo" /></a>
+        <nav id="nav-main" class="nav-main hidden md:block" role="navigation">
+            {% include "menu.twig" with {'items': menu.get_items} %}
+        </nav><!-- #nav -->
+    </div>
+    <nav id="nav-sm" class="nav-sm flex flex-wrap justify-center md:hidden py-3" role="navigation">
+        {% include "menu.twig" with {'items': menu.get_items} %}
+    </nav><!-- #nav -->
+</header>
