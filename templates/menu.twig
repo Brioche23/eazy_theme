@@ -1,4 +1,4 @@
-{% if menu %}
+{# {% if menu %}
 
 <ul class="flex space-x-12">
 	{% for item in items %}
@@ -6,9 +6,10 @@
 		<a target="{{ item.target }}" href="{{ item.link }}"
 			class="text-white uppercase text-xs tracking-wider hover:underline transition duration-300 ease-in-out">{{
 			item.title }} </a>
-		{% include "menu.twig" with {'items': item.children} %}
+		{% include "menu.twig" with {items: item.children} %}
 	</li>
 	{% endfor %}
 </ul>
 
-{% endif %}
+{% endif %} #}
+{{ function('wp_nav_menu', '&theme_location=main_menu') }}

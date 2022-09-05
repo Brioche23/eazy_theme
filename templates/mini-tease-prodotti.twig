@@ -2,15 +2,15 @@
     {% block content %}
 
 
-    <a href="{{post.link}}">
-        <div class="my-5">
+    <a href="{{post.link}}" class="group ">
+        <div class="my-5 p-3 group-hover:bg-eazy-pink transition-all">
             <div class="bg-eazy-pink aspect-square w-full">
                 {% if post.get_thumbnail %}
                 <img src={{post.thumbnail.src| resize(500) }} alt="" class="h-full w-full object-cover" />
                 {% endif %}
             </div>
             <div class="pt-5 space-y-2">
-                <p class="font-medium text-eazy-pink px-0">{{post.title}}</p>
+                <p class="font-medium text-eazy-pink group-hover:text-eazy-cream transition-all px-0">{{post.title}}</p>
                 <p class="text-eazy-dark px-0">{{post.meta('prezzo')}}€</p>
             </div>
         </div>

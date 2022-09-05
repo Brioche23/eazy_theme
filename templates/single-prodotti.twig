@@ -5,18 +5,19 @@
     <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
         <section class="article-content py-32">
             <div class="max-w-screen-xl w-full inside">
-                <div class="text-sm md:w-1/2">
+                {# <div class="text-sm md:w-1/2">
                     <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a> >
                     <a href="{{site.link}}/shop" class="hover:underline">Eazy Green Shop</a> >
                     <a href="#" class="underline">{{post.title}}</a>
-                </div>
+                </div> #}
 
-                <div class="md:flex pt-5 w-full" x-data="{imageUrl: '{{post.thumbnail.src}}'}">
+                <div class="md:flex pt-5 w-full" x-data="{imageUrl: '{{post.thumbnail.src | resize(800)}}'}">
                     <div class="md:w-24 flex md:block space-y-0 space-x-3 md:space-x-0 md:space-y-3 pb-3 md:pr-3">
 
                         {% for image in post.meta('immagini') %}
                         <div class=" w-24 md:w-full aspect-square cursor-pointer"
-                            @mouseover="imageUrl='{{ Image(image) | resize(800) }}'">
+                            @mouseover="imageUrl='{{ Image(image) | resize(800) }}'"
+                            @mouseout="imageUrl='{{ post.thumbnail.src | resize(800) }}'">
                             <img src="{{ Image(image) | resize(200) }}" class="w-full h-full object-cover" />
                         </div>
                         {% endfor %}
@@ -62,7 +63,7 @@
             <div class="max-w-screen-xl w-full inside">
 
                 <p class="uppercase pb-5">
-                    {{pll_e('Other products you might like')}}  
+                    {{pll_e('Other products you might like')}}
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 ">
                     {% for post in prodotti %}
