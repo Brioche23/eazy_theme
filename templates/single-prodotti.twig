@@ -5,11 +5,19 @@
     <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
         <section class="article-content py-32">
             <div class="max-w-screen-xl w-full inside">
-                {# <div class="text-sm md:w-1/2">
+                 <div class="text-sm md:w-1/2">
+                 
+
+                    {% if curlang == 'en' %}
                     <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a> >
                     <a href="{{site.link}}/shop" class="hover:underline">Eazy Green Shop</a> >
                     <a href="#" class="underline">{{post.title}}</a>
-                </div> #}
+                    {% else %}
+                    <a href="{{site.link}}/it/green-it" class="hover:underline">Eazy Green</a> >
+                    <a href="{{site.link}}/it/shop-it" class="hover:underline">Eazy Green Shop</a> >
+                    <a href="#" class="underline">{{post.title}}</a>
+                    {% endif %}
+                </div> 
 
                 <div class="md:flex pt-5 w-full" x-data="{imageUrl: '{{post.thumbnail.src | resize(800)}}'}">
                     <div class="md:w-24 flex md:block space-y-0 space-x-3 md:space-x-0 md:space-y-3 pb-3 md:pr-3">

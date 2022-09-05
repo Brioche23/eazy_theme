@@ -1189,10 +1189,6 @@ select {
      object-fit: cover;
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
 .p-3 {
   padding: 0.75rem;
 }
@@ -1462,14 +1458,14 @@ select {
   transition-duration: 150ms;
 }
 
-.transition-shadow {
-  transition-property: box-shadow;
+.transition-all {
+  transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
-.transition-all {
-  transition-property: all;
+.transition-shadow {
+  transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1738,11 +1734,6 @@ select {
 .group:hover .group-hover\:bg-eazy-pink {
   --tw-bg-opacity: 1;
   background-color: rgb(216 175 145 / var(--tw-bg-opacity));
-}
-
-.group:hover .group-hover\:bg-eazy-cream {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 248 245 / var(--tw-bg-opacity));
 }
 
 .group:hover .group-hover\:text-eazy-cream {

@@ -30,6 +30,8 @@ $args_prod = array(
 );
 $context['prodotti'] = Timber::get_posts($args_prod);
 $context['homelang'] = pll_home_url();
+$context['curlang'] = pll_current_language();
+
 $context['foo']   = 'single.php';
 
 

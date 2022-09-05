@@ -6,9 +6,16 @@
         <section class="max-w-screen-xl inside py-16 md:py-32 ">
             <div class="pb-16">
                 <div class="text-sm">
+                    {% if curlang == 'en' %}
                     <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a> >
                     <a href="{{site.link}}/shop" class="underline">Eazy Green Shop</a>
+                    {% else %}
+                    <a href="{{site.link}}/it/green-it" class="hover:underline">Eazy Green</a> >
+                    <a href="{{site.link}}/it/shop-it" class="underline">Eazy Green Shop</a>
+                    {% endif %}
                 </div>
+
+
                 <div class="md:w-2/3 space-y-4">
                     <h2 class="text-h2 text-eazy-pink">{{post.meta('headline')}}</h2>
                     <p class="text-black text-base">{{post.meta('shop_text')}}</p>

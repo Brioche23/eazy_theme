@@ -40,6 +40,7 @@ $context['prodotti'] = Timber::get_posts($args_prod);
 
 $context['foo']   = 'page.php';
 $context['homelang'] = pll_home_url();
+$context['curlang'] = pll_current_language();
 
 
 $timber_post     = new Timber\Post();
@@ -65,6 +66,9 @@ switch ($name) {
         break;
     case "shop-it":
         $pName = "shop";
+        break;
+    case "news-it":
+        $pName = "news";
         break;
     default:
         $pName = $timber_post->post_name;
