@@ -3,6 +3,8 @@
 {% block content %}
 <div class="content-wrapper">
     <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+        {% include "partial/wa_button.twig" with {'number': options.group_wa} %}
+
         {# hero #}
         <section class="hero ">
             {% include "partial/hero.twig" with {'post': post} %}
