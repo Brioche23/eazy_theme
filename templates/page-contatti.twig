@@ -19,7 +19,7 @@
                         <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3"> {{pll_e('Contacts')}}</h5>
                         <p class="text-h2 text-eazy-blue">{{post.meta('telefono')}}
                         </p>
-                        <p class="text-h2 text-eazy-blue">
+                        <p class="text-h2 text-eazy-blue hover:underline">
                             <a href="mailto:{{post.meta('mail')}}">{{post.meta('mail')}}</a>
                         </p>
                     </div>
@@ -28,7 +28,7 @@
 
 
                         {% for s in post.meta('social') %}
-                        <p class="text-h2 text-eazy-blue">
+                        <p class="text-h2 text-eazy-blue hover:underline">
                             <a href="{{s.link}}">{{s.nome}}</a>
                         </p>
                         {% endfor %}

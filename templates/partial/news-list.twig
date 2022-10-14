@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl inside py-16 md:py-24 ">
         <div class="flex justify-between items-center pb-16">
             <h5 class="text-sm uppercase tracking-widest">{{pll_e(type)}} {{ pll_e('News') }}</h5>
-            <a href="{{site.link}}/news" class="text-sm text-eazy-blue">{{ pll_e('All News') }} ></a>
+            <a href="{{site.link}}/news" class="text-sm text-eazy-blue hover:underline">{{ pll_e('All News') }} ></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
             {% for post in posts %}
