@@ -1,53 +1,124 @@
 {% extends "base.twig" %}
-
 {% block content %}
+
+<style>
+  :root {
+    --swiper-theme-color: #002B63;
+    --swiper-navigation-size: 48;
+  }
+
+  .swiper-wrapper {
+    width: 50%;
+    height: auto;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    width: auto;
+
+    object-fit: cover;
+  }
+
+  .swiper-pagination {
+    bottom: 0px;
+  }
+
+  .swiper-button {
+    background-color: #FAF8F5;
+    border-radius: 100%;
+    height: 35px;
+    width: 35px;
+  }
+
+  .swiper-button:hover {
+    background-color: #002B63;
+    --swiper-theme-color: #FAF8F5;
+
+  }
+</style>
+
 <div class="content-wrapper">
-    <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+  <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
     {% if post.thumbnail.src %}
-        <img src="{{ post.thumbnail.src }}" class="w-full h-96 object-cover">
+    <img src="{{ post.thumbnail.src | towebp }}" class="w-full h-96 object-cover">
     {% endif %}
 
-        <section class="article-content py-16 md:py-32">
-            <div class="max-w-screen-xl w-full md:flex  inside">
-                <div class="md:w-1/2 md:sticky top-32 pr-16 pb-10 md:pb-0">
-                    {# <div class="text-sm">
-                        <a href="{{site.link}}" class="hover:underline">Eazy Group</a> >
-                        <a href="{{site.link}}/news" class="hover:underline">{{pll_e('News and Insight')}}</a> >
-                        <a href="#" class="underline">{{post.title}}</a>
-                    </div> #}
+    <section class="article-content py-16 md:pt-32">
+      <div class="max-w-screen-xl w-full md:flex  inside">
+        <div class="md:w-1/2 md:sticky top-32 pr-16 pb-10 md:pb-0">
+          {# <div class="text-sm">
+            <a href="{{site.link}}" class="hover:underline">Eazy Group</a> >
+            <a href="{{site.link}}/news" class="hover:underline">{{pll_e('News and Insight')}}</a> >
+            <a href="#" class="underline">{{post.title}}</a>
+          </div> #}
 
-                    <p class="text-3xl text-eazy-blue pt-5">
-                        {% if post.meta('titolo_full') %}
-                        {{post.meta('titolo_full')}}
-                        {% else %}
-                        {{post.title}}
-                        {% endif %}
-                    </p>
-                    <p class="blog-author pt-10">
-                        {% for term in post.terms('category') %}
-                        <span>{{ term.name }}</span> &ndash;
-                        {% endfor %}
-                        <!-- <span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&ndash;</span> -->
-                        <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
-                    </p>
-                </div>
-                <div class="article-body wysiwyg space-y-4 md:w-1/2 ">
-                    {{post.meta('text')}}
-                </div>
-            </div>
+          <p class="text-3xl text-eazy-blue pt-5">
+            {% if post.meta('titolo_full') %}
+            {{post.meta('titolo_full')}}
+            {% else %}
+            {{post.title}}
+            {% endif %}
+          </p>
+          <p class="blog-author pt-10">
+            {% for term in post.terms('category') %}
+            <span>{{ term.name }}</span> &ndash;
+            {% endfor %}
+            <!-- <span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&ndash;</span> -->
+            <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+          </p>
+        </div>
+        <div class="article-body wysiwyg space-y-4 md:w-1/2 ">
+          {{post.meta('text')}}
+        </div>
+      </div>
+    </section>
 
-        </section>
-        <section class="pb-16 flex place-content-end inside">
+    <div class="swiper mySwiper my-16">
+      <div class="swiper-wrapper">
+        {% for image in post.meta('gallery') %}
+        <div class="swiper-slide select-none">
+          <img load="lazy" class="slide-image h-[350px] md:h-[400px] lg:h-[500px] object-cover "
+            src="{{ Image(image) | towebp | resize(1000) }}" />
+        </div>
+        {% endfor %}
+      </div>
 
-            <div class="article-body space-y-4 w-full md:w-1/2 ">
-                {% for image in post.meta('gallery') %}
-                <img src="{{ Image(image) | resize(500) }}" class="w-full" />
-                {% endfor %}
-            </div>
-        </section>
-        {% block news_list %}
-        {% include 'partial/news-list.twig' with {'type':'Other'} %}
-        {% endblock %}
-    </article>
+      <div class="swiper-button swiper-button-next transition-all duration-300"></div>
+      <div class="swiper-button swiper-button-prev transition-all duration-300"></div>
+    </div>
+
+    {% block news_list %}
+    {% include 'partial/news-list.twig' with {'type':'Other'} %}
+    {% endblock %}
+  </article>
 </div><!-- /content-wrapper -->
+
+{# gallery script #}
+<script>
+  window.addEventListener("load", function () {
+    let swiper = new Swiper(".mySwiper", {
+      loop: true,
+      grabCursor: true,
+      slidesPerView: "auto",
+      centeredSlides: true,
+      spaceBetween: 30,
+      keyboard: {
+        enabled: true,
+        onlyInViewport: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        type: "fraction",
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      a11y: {
+        prevSlideMessage: "Previous slide",
+        nextSlideMessage: "Next slide",
+      },
+    });
+  });
+</script>
 {% endblock %}

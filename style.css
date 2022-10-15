@@ -883,6 +883,11 @@ select {
   margin-right: auto;
 }
 
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
@@ -976,6 +981,10 @@ select {
   height: 24rem;
 }
 
+.h-\[350px\] {
+  height: 350px;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -1042,6 +1051,12 @@ select {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .resize {
@@ -1266,11 +1281,6 @@ select {
   padding-bottom: 6rem;
 }
 
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -1279,6 +1289,11 @@ select {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .py-5 {
@@ -1874,6 +1889,10 @@ select {
     height: auto;
   }
 
+  .md\:h-\[400px\] {
+    height: 400px;
+  }
+
   .md\:h-10 {
     height: 2.5rem;
   }
@@ -2050,6 +2069,10 @@ select {
 }
 
 @media (min-width: 1024px) {
+  .lg\:h-\[500px\] {
+    height: 500px;
+  }
+
   .lg\:pb-32 {
     padding-bottom: 8rem;
   }

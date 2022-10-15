@@ -204,10 +204,12 @@ class StarterSite extends Timber\Site
 				[],
 				'0.01'
 			);
+			wp_register_script('swiper', 'https://unpkg.com/swiper@8/swiper-bundle.min.js', null, null, true);
 			wp_register_script('alpine_plugin', 'https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js', null, null, true);
 			wp_register_script('alpine', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', null, null, true);
 			wp_nav_menu(array('theme_location' => 'primary'));
 
+			wp_enqueue_script('swiper');
 			wp_enqueue_script('alpine_plugin');
 			wp_enqueue_script('alpine');
 		}));
@@ -272,6 +274,6 @@ add_action('init', function () {
 });
 
 
-
+wp_enqueue_style('swiper_css', 'https://unpkg.com/swiper@8/swiper-bundle.min.css');
 
 new StarterSite();
