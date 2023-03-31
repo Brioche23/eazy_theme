@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         "eazy-blue": "#002B63",
+        "eazy-light-blue": "#B0CFEB",
         "eazy-dark": "#282828",
         "eazy-cream": "#FAF8F5",
         "eazy-pink": "#d8af91",
