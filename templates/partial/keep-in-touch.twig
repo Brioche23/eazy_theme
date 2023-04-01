@@ -1,11 +1,12 @@
-      <section class="bg-eazy-cream text-white py-16 md:py-32 h-full bg-bottom"
-            style="background-image:url('{{ Image(post.meta('keep_in_touch_image')).src }}');  background-size: 100%;">
-            <div class="max-w-screen-xl md:flex md:space-x-16 inside">
-                <div class="md:w-1/2">
-                    <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3"> {{ pll_e('Keep in touch') }} </h5>
-                    <p class="text-h2 pb-16">{{post.meta('kit_text')}}
-                    </p>
-                    <a class="text-h2 underline" href="mailto:{{post.meta('kit_mail')}}">{{post.meta('kit_mail')}}</a>
-                </div>
-            </div>
-        </section>
+<section class="bg-eazy-cream inside {{ text_black ? 'text-black' : 'text-white' }}  py-32 md:py-56 h-full bg-center bg-cover" style="background-image:url('{{ Image(post.meta('keep_in_touch_image')).src }}');">
+	<div class="section-wrapper md:flex md:space-x-16 ">
+		<div class="md:w-1/2">
+			<h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">
+				{{ pll_e('Keep in touch') }}
+			</h5>
+			<p class="text-h2 pb-16">{{post.meta('kit_text')}}
+			</p>
+			<a class="text-h2 underline" href="mailto:{{post.meta('kit_mail')}}">{{post.meta('kit_mail')}}</a>
+		</div>
+	</div>
+</section>

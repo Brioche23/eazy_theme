@@ -1,94 +1,90 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="content-wrapper">
-    <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-        {% include "partial/wa_button.twig" with {'number': options.yachting_wa} %}
+	<div class="content-wrapper">
+		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+			{% include "partial/wa_button.twig" with {'number': options.yachting_wa} %}
 
-        {# hero #}
-        <section class="hero ">
-            {% include "partial/hero.twig" with {'post': post} %}
-        </section>
-        <!-- about -->
-        <section class="bg-white py-16 md:py-24 text-eazy-dark">
-            <div class="max-w-screen-xl md:flex md:space-x-20 inside">
-                <div class="md:w-1/2">
-                    <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">{{ pll_e('about') }}</h5>
-                    <p class="text-h2 text-eazy-blue">{{post.meta('about')}}
-                    </p>
-                </div>
-                <div class="md:w-1/2 pt-4 md:pt-8">
-                    <p class="">
-                        {{post.meta('abstract')}}
-                    </p>
-                </div>
-            </div>
-        </section>
+			{# hero #}
+			<section class="hero ">
+				{% include "partial/hero.twig" with {'post': post} %}
+			</section>
+			<!-- about -->
+			<section class="bg-white page-section">
+				<div class="section-wrapper md:flex md:space-x-20">
+					<div class="md:w-1/2">
+						<h5 class="text-h5 pb-3">{{ pll_e('about') }}</h5>
+						<h2 class="text-h2 text-eazy-blue">{{post.meta('about')}}
+						</h2>
+					</div>
+					<div class="md:w-1/2 pt-4 md:pt-8">
+						<p class="">
+							{{post.meta('abstract')}}
+						</p>
+					</div>
+				</div>
+			</section>
 
-        <!-- Services -->
-        <section class="bg-eazy-cream py-16 md:py-32 text-eazy-dark">
-            <div class="max-w-screen-xl inside">
-                <div class="max-w-screen-xl mx-auto md:flex md:space-x-32 md:items-center pb-8">
-                    <div class="md:w-1/2">
-                        <h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">{{ pll_e('Let’s discover our services') }}</h5>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16   content-start"
-                    x-data="{ active: false }">
+			<!-- Services -->
+			<section class="bg-eazy-cream page-section">
+				<div class="section-wrapper">
+					<div class=" md:flex md:space-x-32 md:items-center pb-8">
+						<h5 class="text-h5 pb-3 md:w-1/2">{{ pll_e('Let’s discover our services') }}</h5>
+					</div>
+					<div
+						class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16   content-start" x-data="{ active: false }">
 
-                    <!-- Service -->
+						<!-- Service -->
 
-                    {% for service in post.meta('services') %}
-                    <div class="my-5" x-data="{
-                        open: false,
-                        toggle() {
-                          if (this.open) {return this.close()}
-                          this.open = true
-                        },
-                        close(focusAfter) {
-                          if (! this.open) return
-                          this.open = false
-                          focusAfter && focusAfter.focus()
-                        }
-                      }" x-on:keydown.escape.prevent.stop="close($refs.button)"
-                        x-on:focusin.window="! $refs.content.contains($event.target) " x-id="['dropdown-button']">
-                        <div class="bg-eazy-blue aspect-square w-full">
+						{% for service in post.meta('services') %}
+							<div class="my-5" x-data="{
+																																																																																																    open: false,
+																																																																																																    toggle() {
+																																																																																																      if (this.open) {return this.close()}
+																																																																																																      this.open = true
+																																																																																																    },
+																																																																																																    close(focusAfter) {
+																																																																																																      if (! this.open) return
+																																																																																																      this.open = false
+																																																																																																      focusAfter && focusAfter.focus()
+																																																																																																    }
+																																																																																																  }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.content.contains($event.target) " x-id="['dropdown-button']">
+								<div class="bg-eazy-blue aspect-square w-full">
 
-                            <img src={{Image(service.thumb).src}} class="object-cover w-full h-full" alt="">
-                        </div>
+									<img src={{Image(service.thumb).src}} class="object-cover w-full h-full" alt="Service Image">
+								</div>
 
-                        <button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left"
-                            x-ref="button" x-on:click="toggle()" :aria-expanded="open"
-                            :aria-controls="$id('dropdown-button')" aria-expanded="true"
-                            aria-controls="dropdown-button-1">
-                            <div>
-                                <p class="text-eazy-blue px-0">{{service.name}}</p>
-                            </div>
-                            <div><span x-show="open" aria-hidden="true" class="">&minus;</span> <span x-show="!open"
-                                    aria-hidden="true" class="">&plus;</span></div>
-                        </button>
-                        <span x-show="!open" aria-hidden="true">
-                            <hr />
-                        </span>
-                        <div x-ref="content" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
-                            <div class="py-4 font-light text-eazy-dark border-b border-eazy-dark">
+								<button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left" x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')" aria-expanded="true" aria-controls="dropdown-button-1">
+									<div>
+										<p class="text-eazy-blue px-0">{{service.name}}</p>
+									</div>
+									<div>
+										<span x-show="open" aria-hidden="true" class="">&minus;</span>
+										<span x-show="!open" aria-hidden="true" class="">&plus;</span>
+									</div>
+								</button>
+								<span x-show="!open" aria-hidden="true">
+									<hr/>
+								</span>
+								<div x-ref="content" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
+									<div class="py-4 font-light text-eazy-dark border-b border-eazy-light-blue">
+										{{service.content}}
+									</div>
+								</div>
+							</div>
+						{% endfor %}
 
-                                {{service.content}}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                </div>
-            </div>
-        </section>
+					</div>
+				</div>
+			</section>
 
 
-        {# Keep in Touch #}
-        {% include "partial/keep-in-touch.twig" with {'post': post} %}
+			{# Keep in Touch #}
+			{% include "partial/keep-in-touch.twig" with {'post': post, 'text_black':true} %}
 
 
-        {{ function('wp_footer') }}
-    </article>
-</div><!-- /content-wrapper -->
+			{{ function('wp_footer') }}
+		</article>
+	</div>
+	<!-- /content-wrapper -->
 {% endblock %}

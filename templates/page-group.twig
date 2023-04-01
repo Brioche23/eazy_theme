@@ -7,11 +7,11 @@
 
 		{# hero #}
 		<section class="hero ">
-			{% include "partial/hero.twig" with {'post': post} %}
+			{% include "partial/hero-group.twig" with {'post': post} %}
 		</section>
 		<!-- about -->
-		<section class="bg-white py-16 md:py-32 text-eazy-dark">
-			<div class="max-w-screen-xl md:flex md:space-x-32 md:items-center inside">
+		<section class="bg-white page-section">
+			<div class="section-wrapper md:flex md:space-x-32 md:items-center">
 				<div class="md:w-1/2">
 					<h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">{{ pll_e('about') }}</h5>
 					<p class="text-h2 text-eazy-blue">{{post.meta('about')}}
@@ -27,8 +27,8 @@
 		</section>
 		<!-- Companies -->
 		<!-- TODO Switch order -->
-		<section class="bg-eazy-cream py-16 md:py-32 text-eazy-dark">
-			<div class="max-w-screen-xl inside">
+		<section class="bg-eazy-cream page-section">
+			<div class="section-wrapper">
 				<h5 class="text-sm uppercase tracking-widest pb-12">{{ pll_e('lets_discover') }}</h5>
 				{% set i = 0 %}
 				{% for item in post.meta('companies') %}
@@ -59,9 +59,9 @@
 		</section>
 		<!-- Team -->
 		<!-- TODO Integrate first member -->
-		<section class="bg-white py-16 md:py-32 text-eazy-dark">
-			<div class="max-w-screen-xl inside">
-				<div class="max-w-screen-xl mx-auto md:flex md:space-x-32 md:items-center pb-8">
+		<section class="bg-white page-section">
+			<div class="section-wrapper">
+				<div class="section-wrapper md:flex md:space-x-32 md:items-center pb-8">
 					<div class="md:w-1/2">
 						<h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">Team</h5>
 						<p class="text-h2 text-eazy-blue">{{post.meta('team_h2')}}</p>
@@ -71,7 +71,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16  md:py-32 content-start"
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16  md:pt-24 content-start"
 					x-data="{ active: false }">
 
 					<!-- Team member-->
@@ -80,7 +80,7 @@
 					{% for member in post.meta('team_members') %}
 
 					{% if j == 0 %}
-					<div class="bg-eazy-blue aspect-[1/3] w-full">
+					<div class="bg-eazy-blue  w-full">
 						{% if member.picture %}
 						<img src={{ Image(member.picture).src | resize(500) }} alt=""
 							class="h-full w-full object-cover " />
@@ -101,29 +101,27 @@
 
 					{% else %}
 
-					<div class="my-5"
-						x-data="{
-																																																																																																																																																																		                        open: false,
-																																																																																																																																																																		                        toggle() {
-																																																																																																																																																																		                          if (this.open) {return this.close()}
-																																																																																																																																																																		                          this.open = true
-																																																																																																																																																																		                        },
-																																																																																																																																																																		                        close(focusAfter) {
-																																																																																																																																																																		                          if (! this.open) return
-																																																																																																																																																																		                          this.open = false
-																																																																																																																																																																		                          focusAfter && focusAfter.focus()
-																																																																																																																																																																		                        }
-																																																																																																																																																																		                      }"
-						x-on:keydown.escape.prevent.stop="close($refs.button)"
+					<div class="my-5" x-data="{
+                        open: false,
+                        toggle() {
+                          if (this.open) {return this.close()}
+                          this.open = true
+                        },
+                        close(focusAfter) {
+                          if (! this.open) return
+                          this.open = false
+                          focusAfter && focusAfter.focus()
+                        }
+                      }" x-on:keydown.escape.prevent.stop="close($refs.button)"
 						x-on:focusin.window="! $refs.bio.contains($event.target) " x-id="['dropdown-button']">
-						<div class="bg-eazy-blue aspect-[1/3] w-full">
+						<div class="bg-eazy-blue  w-full">
 							{% if member.picture %}
 							<img src={{ Image(member.picture).src | resize(500) }} alt=""
 								class="h-full w-full object-cover" />
 							{% endif %}
 
 						</div>
-
+						{% if member.cagnolino == false%}
 						<button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left"
 							x-ref="button" x-on:click="toggle()" :aria-expanded="open"
 							:aria-controls="$id('dropdown-button')" aria-expanded="true"
@@ -137,11 +135,21 @@
 								<span x-show="!open" aria-hidden="true" class="">&plus;</span>
 							</div>
 						</button>
+						{% else %}
+						<div class="flex justify-between items-center py-4 px-0 w-full text-left">
+							<div>
+								<p class="font-medium text-eazy-blue px-0">{{member.name}}</p>
+								<p class="text-eazy-blue px-0">{{member.role}}</p>
+							</div>
+
+						</div>
+						{% endif %}
+
 						<span x-show="!open" aria-hidden="true">
 							<hr />
 						</span>
 						<div x-ref="bio" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
-							<div class="py-4 font-light text-eazy-dark border-b border-eazy-blue">
+							<div class="py-4 font-light text-eazy-dark border-b border-eazy-light-blue">
 								{{member.bio}}
 							</div>
 						</div>
@@ -160,20 +168,20 @@
 		{% endblock %}
 		<!-- Partners -->
 		{% if post.meta('partners') %}
-		<section class="bg-white text-eazy-dark">
-			<div class="max-w-screen-xl inside py-16 md:pt-32">
+		<section class="bg-white page-section">
+			<div class="section-wrapper">
 				<h5 class="text-sm uppercase tracking-widest pb-3">Partners</h5>
-				<div class="flex flex-wrap items-center md:justify-between space-x-5 space-y-5 pt-16 md:pb-32">
+				<div class="flex flex-wrap items-center md:justify-between space-x-5 space-y-5 pt-8">
 					{% for partner in post.meta('partners') %}
 					<div class="h-full">
 						<a href="{{partner.url}}" target="_blank" class="h-24 md:h-32 ">
-							<img src="{{ Image(partner.logo).src }}" alt="{{ Image(partner.logo).alt }}"
-								class="h-24 md:h-32" />
-							<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 876.216 876.204" width="150"
-								height="150" class="fill-eazy-blue hover:fill-[#B0CFEB] ">
+							<!-- <img src="{{ Image(partner.logo).src }}" alt="{{ Image(partner.logo).alt }}"
+								class="h-24 md:h-32" /> -->
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 876.216 876.204" width="150"
+								height="150" class="fill-eazy-blue hover:fill-eazy-light-blue ">
 
 								{{partner.svg_code}}
-							</svg> -->
+							</svg>
 						</a>
 					</div>
 					{% endfor %}

@@ -39,36 +39,46 @@
 
 <div class="content-wrapper">
   <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-    {% if post.thumbnail.src %}
+    <!-- {% if post.thumbnail.src %}
     <img src="{{ post.thumbnail.src | towebp }}" class="w-full h-96 object-cover">
-    {% endif %}
+    {% endif %} -->
 
-    <section class="article-content py-16 md:pt-32">
-      <div class="max-w-screen-xl w-full md:flex  inside">
-        <div class="md:w-1/2 md:sticky top-32 pr-16 pb-10 md:pb-0">
-          {# <div class="text-sm">
-            <a href="{{site.link}}" class="hover:underline">Eazy Group</a> >
-            <a href="{{site.link}}/news" class="hover:underline">{{pll_e('News and Insight')}}</a> >
-            <a href="#" class="underline">{{post.title}}</a>
-          </div> #}
-
-          <p class="text-3xl text-eazy-blue pt-5">
-            {% if post.meta('titolo_full') %}
-            {{post.meta('titolo_full')}}
-            {% else %}
-            {{post.title}}
-            {% endif %}
-          </p>
-          <p class="blog-author pt-10">
-            {% for term in post.terms('category') %}
-            <span>{{ term.name }}</span> &ndash;
-            {% endfor %}
-            <!-- <span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&ndash;</span> -->
-            <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
-          </p>
+    <section class="article-content page-section">
+      <div class="section-wrapper w-full pt-20 md:pt-0">
+        <div id="breadcrumbs" class="text-sm py-5">
+          <a href="{{homelang}}" class="hover:underline">Eazy Group</a>
+          >
+          {% if curlang == 'en' %}
+          <a href="{{site.link}}/news" class="hover:underline">{{pll_e('News and Insights')}}</a>
+          {% else %}
+          <a href="{{site.link}}/it/news-it" class="underline">{{pll_e('News and Insights')}}</a>
+          {% endif %}
+          >
+          <a href="#" class="underline">{{post.title}}</a>
         </div>
-        <div class="article-body wysiwyg space-y-4 md:w-1/2 ">
-          {{post.meta('text')}}
+        <div class="md:flex">
+
+          <div class="md:w-1/2 md:sticky top-32 pr-16 pb-10 md:pb-0">
+
+
+            <p class="text-3xl text-eazy-blue">
+              {% if post.meta('titolo_full') %}
+              {{post.meta('titolo_full')}}
+              {% else %}
+              {{post.title}}
+              {% endif %}
+            </p>
+            <p class="blog-author pt-5">
+              {% for term in post.terms('category') %}
+              <span>{{ term.name }}</span> &ndash;
+              {% endfor %}
+              <!-- <span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&ndash;</span> -->
+              <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+            </p>
+          </div>
+          <div class="article-body wysiwyg space-y-4 md:w-1/2 ">
+            {{post.meta('text')}}
+          </div>
         </div>
       </div>
     </section>

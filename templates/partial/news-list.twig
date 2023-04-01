@@ -1,25 +1,27 @@
-<section class="bg-eazy-cream text-eazy-dark">
-    <div class="max-w-screen-xl inside py-16 md:py-24 ">
-        <div class="flex justify-between items-center pb-16">
-            <h5 class="text-sm uppercase tracking-widest">{{pll_e(type)}} {{ pll_e('News') }}</h5>
-            <a href="{{site.link}}/news" class="text-sm text-eazy-blue hover:underline">{{ pll_e('All News') }} ></a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
-            {% for post in posts %}
-            <a href="{{post.link}}" class="border-t border-eazy-dark group flex flex-col justify-between">
-                <div>
-                    <h6 class="text-xl text-eazy-blue pt-4">{{post.title}}</h6>
-                </div>
-                <div class="text-xs">
-                    <img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
-                        class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out" alt="" />
-                    {% for term in post.terms('category') %}
-                    <span>{{ term.name }}</span> &ndash;
-                    {% endfor %}
-                    <time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date |date('F j, Y')}}</time>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
+<section class="bg-eazy-cream page-section">
+	<div class="section-wrapper">
+		<div class="flex justify-between items-center pb-16">
+			<h5 class="text-sm uppercase tracking-widest">{{pll_e(type)}}
+				{{ pll_e('News') }}</h5>
+			<a href="{{site.link}}/news" class="text-sm text-eazy-blue hover:underline">{{ pll_e('All News') }}
+				></a>
+		</div>
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
+			{% for post in posts %}
+				<a href="{{post.link}}" class="border-t border-eazy-dark group flex flex-col justify-between">
+					<div>
+						<h6 class="text-xl text-eazy-blue pt-4">{{post.title}}</h6>
+					</div>
+					<div class="text-xs">
+						<img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg" class="py-8 transform group-hover:translate-x-10 transition duration-300 ease-in-out" alt=""/>
+						{% for term in post.terms('category') %}
+							<span>{{ term.name }}</span>
+							&ndash;
+						{% endfor %}
+						<time datetime="{{ post.date|date('Y-m-d H:i:s') }}">{{ post.date |date('F j, Y')}}</time>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
 </section>
