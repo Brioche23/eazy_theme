@@ -30,6 +30,14 @@
   @apply space-y-4;
 }
 
+.wysiwyg > ul {
+  @apply list-disc;
+}
+
+.wysiwyg > p > a {
+  @apply text-eazy-blue underline;
+}
+
 .hero-button {
   @apply border-2 border-white hover:border-eazy-blue hover:bg-eazy-blue text-white  hover:text-white text-sm rounded-full px-5 py-3 my-2 w-2/3 text-center sm:w-auto tracking-wide transition ease-in-out duration-300;
 }

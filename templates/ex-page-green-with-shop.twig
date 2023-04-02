@@ -13,7 +13,7 @@
 			<section class="bg-white page-section">
 				<div class="section-wrapper md:flex md:space-x-20">
 					<div class="md:w-1/2">
-						<h5 class="text-h5 pb-3">{{ pll_e('about') }}</h5>
+						<h5 class="text-xs md:text-h5 pb-3">{{ pll_e('about') }}</h5>
 						<p class="text-h2 text-eazy-blue">{{post.meta('about')}}
 						</p>
 					</div>
@@ -28,35 +28,44 @@
 			<section class="bg-eazy-cream  page-section">
 
 				<div class="section-wrapper">
-					<div class="flex justify-between items-center ">
-						<h5 class="text-h5 pb-3">Eazy Green Shop</h5>
-
+					<div class="flex justify-between items-center pb-16">
+						<h5 class="text-xs md:text-h5 pb-3">Eazy Green Shop</h5>
+						<a href="{{site.link}}/shop" class="text-sm text-eazy-blue">{{ pll_e('All products') }}
+							></a>
 					</div>
-					{# ! Shop in ex-page-green-with-shop.twig #}
 					<div class="md:w-2/3 space-y-4">
 						<h2 class="text-h2 text-eazy-pink">{{post.meta('shop_headline')}}</h2>
-						<p class="text-black text-base wysiwyg">{{post.meta('shop_text')}}</p>
-						<h2 class="text-h2 text-eazy-pink pt-4">{{post.meta('shop_headline_2')}}</h2>
-						<p class="text-black text-base wysiwyg">{{post.meta('shop_text_2')}}</p>
+						<p class="text-black text-base">{{post.meta('shop_text')}}</p>
 					</div>
+					<div class="grid sm:grid-cols-2 md:grid-cols-5 md:grid-rows-2 place-content-between gap-5 pt-12">
+						<div class="aspect-square sm:aspect-auto md:row-span-2 sm:col-span-2 ">
 
+							<img src="{{Image(post.meta('shop_image')).src | resize(750)}}" class="h-full w-full object-cover" alt="">
+						</div>
+						{% for post in prodotti %}
+							<div class="">
+								<a href="{{post.link}}">
+									<div class="bg-eazy-pink aspect-square ">
+										{% if post.get_thumbnail %}
+											<img src={{post.thumbnail.src| resize(500) }} alt="" class="h-full w-full object-cover"/>
+										{% endif %}
+									</div>
+								</a>
+								<div class="py-4 px-0 w-full text-left">
+									<p class="text-sm font-medium text-eazy-pink px-0">{{post.title}}</p>
+									<p class="text-sm text-eazy-dark px-0">{{post.meta('tipologia')}}</p>
+
+								</div>
+								<span>
+									<hr/>
+								</span>
+
+							</div>
+						{% endfor %}
+
+					</div>
 				</div>
 			</section>
-
-			<section class="bg-eazy-cream inside {{ text_black ? 'text-black' : 'text-white' }}  py-32 md:py-56 h-full bg-center bg-cover" style="background-image:url('{{ Image(post.meta('kit_shop_image')).src }}');">
-				<div class="section-wrapper md:flex md:space-x-16 ">
-					<div class="md:w-1/2">
-						<h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">
-							{{ pll_e('Keep in touch') }}
-						</h5>
-						<p class="text-h2 pb-16">{{post.meta('kit_shop_text')}}
-						</p>
-						<a class="text-h2 underline" href="mailto:{{post.meta('kit_mail')}}">{{post.meta('kit_mail')}}</a>
-					</div>
-				</div>
-			</section>
-
-
 			<!-- Services -->
 			<section class="bg-white page-section">
 				<div class="section-wrapper">
@@ -105,7 +114,7 @@
 						{{post.meta('green_goals_text')}}
 					</p>
 					<div class="flex mx-auto
-																																																																																																																																																																							                 max-w-2xl justify-between pt-16">
+																																																															                 max-w-2xl justify-between pt-16">
 
 
 						{% for icon in post.meta('green_goals_icons') %}

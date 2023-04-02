@@ -38,17 +38,17 @@
 
 						{% for service in post.meta('services') %}
 							<div class="my-5" x-data="{
-																																																																																																    open: false,
-																																																																																																    toggle() {
-																																																																																																      if (this.open) {return this.close()}
-																																																																																																      this.open = true
-																																																																																																    },
-																																																																																																    close(focusAfter) {
-																																																																																																      if (! this.open) return
-																																																																																																      this.open = false
-																																																																																																      focusAfter && focusAfter.focus()
-																																																																																																    }
-																																																																																																  }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.content.contains($event.target) " x-id="['dropdown-button']">
+																																																																																																								    open: false,
+																																																																																																								    toggle() {
+																																																																																																								      if (this.open) {return this.close()}
+																																																																																																								      this.open = true
+																																																																																																								    },
+																																																																																																								    close(focusAfter) {
+																																																																																																								      if (! this.open) return
+																																																																																																								      this.open = false
+																																																																																																								      focusAfter && focusAfter.focus()
+																																																																																																								    }
+																																																																																																								  }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.content.contains($event.target) " x-id="['dropdown-button']">
 								<div class="bg-eazy-blue aspect-square w-full">
 
 									<img src={{Image(service.thumb).src}} class="object-cover w-full h-full" alt="Service Image">
@@ -67,7 +67,7 @@
 									<hr/>
 								</span>
 								<div x-ref="content" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
-									<div class="py-4 font-light text-eazy-dark border-b border-eazy-light-blue">
+									<div class="wysiwyg py-4 font-light text-eazy-dark border-b border-eazy-light-blue">
 										{{service.content}}
 									</div>
 								</div>
