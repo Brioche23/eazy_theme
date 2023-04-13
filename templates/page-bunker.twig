@@ -26,18 +26,18 @@
                     <div class="pt-5 w-full md:w-1/2">
                         {% for point in post.meta('touchpoints') %}
 
-                        <div class="border-b" x-data="{
-					                            open: false,
-					                            toggle() {
-					                              if (this.open) {return this.close()}
-					                              this.open = true
-					                            },
-					                            close(focusAfter) {
-					                              if (! this.open) return
-					                              this.open = false
-					                              focusAfter && focusAfter.focus()
-					                            }
-					                          }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                        <div class="" x-data="{
+																							                            open: false,
+																							                            toggle() {
+																							                              if (this.open) {return this.close()}
+																							                              this.open = true
+																							                            },
+																							                            close(focusAfter) {
+																							                              if (! this.open) return
+																							                              this.open = false
+																							                              focusAfter && focusAfter.focus()
+																							                            }
+																							                          }" x-on:keydown.escape.prevent.stop="close($refs.button)"
                             x-on:focusin.window="! $refs.content.contains($event.target) " x-id="['dropdown-button']">
                             <button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left"
                                 x-ref="button" x-on:click="toggle()" :aria-expanded="open"
@@ -49,9 +49,11 @@
                                     <span x-show="!open" aria-hidden="true" class="">&plus;</span>
                                 </div>
                             </button>
-                            <div x-ref="content" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
-                                <div class="py-4 font-light text-eazy-dark border-b border-eazy-light-blue">
-                                    {{point.content}}
+                            <div class="accordion-border">
+                                <div x-ref="content" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
+                                    <div class="py-4 font-light text-eazy-dark ">
+                                        {{point.content}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -95,26 +97,23 @@
                     <div class="pt-5 ">
                         {% for ps in post.meta('primary_services') %}
 
-                        <div class=""
-                            x-data="{
-                                                                                                                                                                            open: false,
-                                                                                                                                                                            toggle() {
-                                                                                                                                                                              if (this.open) {return this.close()}
-                                                                                                                                                                              this.open = true
-                                                                                                                                                                            },
-                                                                                                                                                                            close(focusAfter) {
-                                                                                                                                                                              if (! this.open) return
-                                                                                                                                                                              this.open = false
-                                                                                                                                                                              focusAfter && focusAfter.focus()
-                                                                                                                                                                            }
-                                                                                                                                                                          }"
-                            x-on:keydown.escape.prevent.stop="close($refs.button)"
-                            x-on:focusin.window="! $refs.ps.contains($event.target) " x-id="['dropdown-button']">
-                            <div class="flex justify-between items-center py-4">
+                        <div class="flex  items-start py-4">
 
-                                <img src={{ Image(ps.icon).src }} class="h-20" alt="">
-                                <button type="button"
-                                    class="flex justify-between items-center py-4 ml-5 w-full text-left border-b"
+                            <img src={{ Image(ps.icon).src }} class="h-20" alt="">
+                            <div class="w-full ml-5" x-data="{
+                              open: false,
+                              toggle() {
+                                if (this.open) {return this.close()}
+                                this.open = true
+                              },
+                              close(focusAfter) {
+                                if (! this.open) return
+                                this.open = false
+                                focusAfter && focusAfter.focus()
+                              }
+                            }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                x-on:focusin.window="! $refs.ps.contains($event.target) " x-id="['dropdown-button']">
+                                <button type="button" class="flex justify-between items-center py-4 w-full text-left"
                                     x-ref="button" x-on:click="toggle()" :aria-expanded="open"
                                     :aria-controls="$id('dropdown-button')" aria-expanded="true"
                                     aria-controls="dropdown-button-1">
@@ -124,13 +123,16 @@
                                         <span x-show="!open" aria-hidden="true" class="">&plus;</span>
                                     </div>
                                 </button>
-                            </div>
-                            <div x-ref="ps" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
-                                <div class="ml-24 py-4 font-light text-eazy-dark border-b border-eazy-blue">
+                                <div class="accordion-border">
+                                    <div x-ref="ps" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
+                                        <div class="pb-4 font-light text-eazy-dark">
 
-                                    {{ps.content}}
+                                            {{ps.content}}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                         {% endfor %}
                     </div>
@@ -140,26 +142,23 @@
                     <div class="pt-5 ">
                         {% for ss in post.meta('secondary_services') %}
 
-                        <div class=""
-                            x-data="{
-                                                                                                                                                                            open: false,
-                                                                                                                                                                            toggle() {
-                                                                                                                                                                              if (this.open) {return this.close()}
-                                                                                                                                                                              this.open = true
-                                                                                                                                                                            },
-                                                                                                                                                                            close(focusAfter) {
-                                                                                                                                                                              if (! this.open) return
-                                                                                                                                                                              this.open = false
-                                                                                                                                                                              focusAfter && focusAfter.focus()
-                                                                                                                                                                            }
-                                                                                                                                                                          }"
-                            x-on:keydown.escape.prevent.stop="close($refs.button)"
-                            x-on:focusin.window="! $refs.ss.contains($event.target) " x-id="['dropdown-button']">
-                            <div class="flex justify-between items-center py-4">
+                        <div class="flex items-start py-4">
 
-                                <img src={{ Image(ss.icon).src }} class="h-20" alt="">
-                                <button type="button"
-                                    class="flex justify-between items-center py-4 ml-5 w-full text-left border-b"
+                            <img src={{ Image(ss.icon).src }} class="h-20" alt="">
+                            <div class="w-full ml-5" x-data="{
+                 open: false,
+                 toggle() {
+                   if (this.open) {return this.close()}
+                   this.open = true
+                 },
+                 close(focusAfter) {
+                   if (! this.open) return
+                   this.open = false
+                   focusAfter && focusAfter.focus()
+                 }
+               }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                x-on:focusin.window="! $refs.ss.contains($event.target) " x-id="['dropdown-button']">
+                                <button type="button" class="flex justify-between items-center py-4  w-full text-left "
                                     x-ref="button" x-on:click="toggle()" :aria-expanded="open"
                                     :aria-controls="$id('dropdown-button')" aria-expanded="true"
                                     aria-controls="dropdown-button-1">
@@ -169,11 +168,13 @@
                                         <span x-show="!open" aria-hidden="true" class="">&plus;</span>
                                     </div>
                                 </button>
-                            </div>
-                            <div x-ref="ss" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
-                                <div class="ml-24 py-4 font-light text-eazy-dark border-b border-eazy-dark">
+                                <div class="accordion-border">
+                                    <div x-ref="ss" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
+                                        <div class="pb-4 font-light text-eazy-dark ">
 
-                                    {{ss.content}}
+                                            {{ss.content}}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -182,8 +183,6 @@
                 </div>
             </div>
         </section>
-
-
 
 
         {# Market #}
