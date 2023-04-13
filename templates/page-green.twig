@@ -61,7 +61,7 @@
 			<section class="bg-white page-section">
 				<div class="section-wrapper">
 					<h5 class="text-h5 pb-3">Eazy Green Collaboration</h5>
-					<p class="text-h2 text-eazy-blue">{{post.meta('collab_h2')}}
+					<p class="text-h2 text-eazy-blue pb-6">{{post.meta('collab_h2')}}
 					</p>
 
 					<p class="md:w-2/3">
@@ -76,7 +76,7 @@
 					<h5 class="text-h5 pb-12">{{ pll_e('Let’s discover our collaborations') }}</h5>
 					{% set i = 0 %}
 					{% for item in post.meta('collaborations') %}
-						<a href="#" class="w-full md:flex group hover:shadow-xl transition-shadow duration-300 ease-in-out my-6 md:mb-12">
+						<a href="#" class="w-full md:flex group my-6 md:mb-12">
 							<div class="aspect-[4/3] bg-eazy-blue md:w-1/2 overflow-hidden {{  i % 2  == 0 ? 'md:order-1' : 'md:order-2' }}">
 								<img src={{ Image(item.image).src }} class="object-cover h-full" alt=""/>
 							</div>
@@ -105,7 +105,7 @@
 						{{post.meta('green_goals_text')}}
 					</p>
 					<div class="flex mx-auto
-																																																																																																																																																																							                 max-w-2xl justify-between pt-16">
+																																																																																																																																																																																					                 max-w-2xl justify-between pt-16">
 
 
 						{% for icon in post.meta('green_goals_icons') %}
