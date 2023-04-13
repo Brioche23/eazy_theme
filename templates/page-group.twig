@@ -176,11 +176,11 @@
 				<div class="flex flex-wrap items-center md:justify-between space-x-5 space-y-5 pt-8">
 					{% for partner in post.meta('partners') %}
 					<div class="h-full">
-						<a href="{{partner.url}}" target="_blank" class="h-24 md:h-32 ">
+						<a href="{{partner.url}}" target="_blank" class="h-16 md:h-24 w-auto">
 							<!-- <img src="{{ Image(partner.logo).src }}" alt="{{ Image(partner.logo).alt }}"
 																		class="h-24 md:h-32" /> -->
-							<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 876.216 876.204" width="150"
-								height="150" class="fill-eazy-blue hover:fill-eazy-light-blue ">
+							<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 876.216 876.204"
+								height="{{partner.size}}" class="fill-eazy-blue hover:fill-eazy-light-blue ">
 
 								{{partner.svg_code}}
 							</svg>

@@ -992,6 +992,10 @@ select {
   height: 3.5rem;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -2000,6 +2004,10 @@ select {
     aspect-ratio: 16 / 9;
   }
 
+  .md\:aspect-\[4\/3\] {
+    aspect-ratio: 4/3;
+  }
+
   .md\:h-32 {
     height: 8rem;
   }
@@ -2014,6 +2022,10 @@ select {
 
   .md\:h-10 {
     height: 2.5rem;
+  }
+
+  .md\:h-24 {
+    height: 6rem;
   }
 
   .md\:w-1\/2 {
