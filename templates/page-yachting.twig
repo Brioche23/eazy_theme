@@ -11,18 +11,7 @@
 		</section>
 		<!-- about -->
 		<section class="bg-white page-section">
-			<div class="section-wrapper md:flex md:space-x-20">
-				<div class="md:w-1/2">
-					<h5 class="text-h5 pb-3">{{ pll_e('about') }}</h5>
-					<h2 class="text-h2 text-eazy-blue">{{post.meta('about')}}
-					</h2>
-				</div>
-				<div class="md:w-1/2 pt-4 md:pt-8">
-					<p class="">
-						{{post.meta('abstract')}}
-					</p>
-				</div>
-			</div>
+			{% include "partial/about.twig" with {'post': post} %}
 		</section>
 
 		<!-- Services -->

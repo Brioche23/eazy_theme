@@ -1,12 +1,14 @@
 {% block html_head_container %}
 
 {% include 'html-header.twig' %}
-{% block head %}
-{% endblock %}
-</head>
-{% endblock %}
+{% block head %}{% endblock %}
+</head>{% endblock %}
 
-<body class="{{body_class}} antialiased" data-template="base.twig">
+<body x-data="{expanded : false,
+	close(){
+	  if(this.expanded) this.expanded=false;
+	}}" class="{{body_class}} antialiased lg:overflow-auto  " :class="expanded && ' overflow-hidden'"
+	data-template="base.twig">
 	<a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content') }}</a>
 
 	{% block header %}
@@ -19,11 +21,13 @@
 
 
 
+
 	<section id="content" role="main" class="content-wrapper relative">
 
 
-
-		{% if title %}<h1>{{title}}</h1>{% endif %}
+		{% if title %}
+		<h1>{{title}}</h1>
+		{% endif %}
 		<div class="wrapper {{sidebar_class}}">
 			{% block content %}
 			Sorry, no content
@@ -35,7 +39,6 @@
 		</aside>
 		{% endif %}
 	</section>
-
 
 
 	{% block footer %}

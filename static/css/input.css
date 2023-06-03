@@ -69,3 +69,7 @@
 .accordion-border {
   @apply border-b border-slate-200;
 }
+
+/* #wpadminbar {
+  @apply hidden;
+} */

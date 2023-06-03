@@ -3,7 +3,7 @@
 {% block content %}
 <div class="content-wrapper">
     <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-        <section id="contatti" class="bg-white page-section mt-20 lg:mt-0 lg:h-screen flex place-content-center">
+        <section id="contatti" class="bg-white page-section mt-20 lg:mt-0 flex place-content-center">
 
             <div class="section-wrapper w-full my-auto md:flex md:space-x-20">
                 <div class="md:w-1/3">
@@ -43,8 +43,8 @@
                             class="w-full h-full" width="100%" height="100%" style="border:0;" allowfullscreen="true"
                             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         <!-- <a href="{{post.meta('link_maps')}}" target="_blank">
-                            <img src="{{ Image(post.meta('immagine_mappa')).src }}" alt="">
-                        </a> -->
+							                            <img src="{{ Image(post.meta('immagine_mappa')).src }}" alt="">
+							                        </a> -->
                     </div>
                 </div>
             </div>
@@ -56,6 +56,22 @@
         {{ function('wp_footer') }}
         {% endblock %}
     </article>
+    <section>
+        <div class="grid grid-cols-3">
+
+            {% for p in post.meta('banner_pagine') %}
+            <a href={{p.pagina}} class="group">
+                <div class="bg-eazy-cream inside text-white  py-32 md:py-56 h-full bg-center bg-cover flex place-content-end"
+                    style="background-image:url('{{ Image(p.sfondo).src }}')">
+
+                    <p class="text-2xl group-hover:underline">
+                        {{p.nome}}
+                    </p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
 </div>
 <!-- /content-wrapper -->
 {% endblock %}

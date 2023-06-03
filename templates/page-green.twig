@@ -11,31 +11,36 @@
 			</section>
 			<!-- about -->
 			<section class="bg-white page-section">
-				<div class="section-wrapper md:flex md:space-x-20">
-					<div class="md:w-1/2">
-						<h5 class="text-h5 pb-3">{{ pll_e('about') }}</h5>
-						<p class="text-h2 text-eazy-blue">{{post.meta('about')}}
-						</p>
-					</div>
-					<div class="md:w-1/2 pt-4 md:pt-8">
-						<p class="">
-							{{post.meta('abstract')}}
-						</p>
-					</div>
-				</div>
+				{% include "partial/about.twig" with {'post': post} %}
 			</section>
 			<!-- Shop -->
 			<section class="bg-eazy-cream  page-section">
 
 				<div class="section-wrapper">
-					<div class="flex justify-between items-center ">
-						<h5 class="text-h5 pb-3">Eazy Green Shop</h5>
-
+					<div class="flex justify-between items-center pb-4">
+						<h5 class="text-sm uppercase tracking-widest">{{pll_e(type)}}
+							{{ pll_e('Eazy Green Shop') }}</h5>
+						<a href="{{site.link}}/shop" class="text-sm text-eazy-blue hover:underline">{{ pll_e('All Products') }}
+							></a>
 					</div>
+
 					{# ! Shop in ex-page-green-with-shop.twig #}
 					<div class="md:w-2/3 space-y-4">
 						<h2 class="text-h2 text-eazy-pink">{{post.meta('shop_headline')}}</h2>
 						<p class="text-black text-base wysiwyg">{{post.meta('shop_text')}}</p>
+					</div>
+
+					<div class="grid sm:grid-cols-2 md:grid-cols-5 md:grid-rows-2 place-content-between gap-5 pt-8">
+						<div class="aspect-square sm:aspect-auto md:row-span-2 sm:col-span-2 ">
+
+							<img src="{{Image(post.meta('shop_image')).src | resize(750)}}" class="h-full w-full object-cover" alt="">
+						</div>
+						{% for post in prodotti %}
+							{% include ['tease-'~post.post_type~'-small.twig','tease.twig'] %}
+						{% endfor %}
+
+					</div>
+					<div class="md:w-2/3 space-y-4 pt-8">
 						<h2 class="text-h2 text-eazy-pink pt-4">{{post.meta('shop_headline_2')}}</h2>
 						<p class="text-black text-base wysiwyg">{{post.meta('shop_text_2')}}</p>
 					</div>
@@ -105,7 +110,7 @@
 						{{post.meta('green_goals_text')}}
 					</p>
 					<div class="flex mx-auto
-																																																																																																																																																																																					                 max-w-2xl justify-between pt-16">
+																																																																																																																																																																																																																																																																																														                 max-w-2xl justify-between pt-16">
 
 
 						{% for icon in post.meta('green_goals_icons') %}

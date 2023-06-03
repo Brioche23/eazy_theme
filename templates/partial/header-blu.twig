@@ -1,13 +1,24 @@
-<header class="header absolute top-0 w-full inside z-10 bg-eazy-blue ">
+<header class="header absolute top-0 w-full inside z-20 bg-eazy-blue ">
 
-    <div class="wrapper max-w-screen-xl mx-auto flex place-content-center md:justify-between items-center py-3 md:py-6 ">
-        <a href="{{homelang}}"><img src="{{ site.theme.link }}/static/assets/svg/EZG_logo.svg" class="h-8 md:h-10 w-auto"
-                alt="Eazy Group Logo" /></a>
-        <nav id="nav-main" class="nav-main hidden md:block" role="navigation">
-            {% include "menu.twig" with {'items': menu.get_items} %}
-        </nav><!-- #nav -->
-    </div>
-    <nav id="nav-sm" class="nav-sm flex flex-wrap justify-center md:hidden py-3" role="navigation">
-        {% include "menu.twig" with {'items': menu.get_items} %}
-    </nav><!-- #nav -->
+	<div class="wrapper ection-wrapper flex justify-between md:place-content-center md:justify-between items-center py-3 md:py-6 ">
+		<a href="{{homelang}}"><img src="{{ site.theme.link }}/static/assets/svg/EZG_logo.svg" class="h-8 md:h-10 w-auto" alt="Eazy Group Logo"/></a>
+		<nav id="nav-main" class="nav-main hidden md:block" role="navigation">
+			{% include "menu.twig" with {'items': menu.get_items} %}
+		</nav>
+
+		{% include "partial/hamburger-button.twig" %}
+
+		<!-- #nav -->
+	</div>
+	<div id="overlay-content" x-show="expanded" x-transition class="flex flex-wrap divide-y relative text-left md:hidden">
+
+		{% include "menu-mobile.twig" with {items: menu_mobile.get_items} %}
+		<div class="flex w-full pt-8 space-x-4">
+
+			{% include "partial/social.twig" %}
+		</div>
+
+	</div>
 </header>
+<!-- #background -->
+<div x-show="expanded" class="wrapper  z-10 absolute left-0 top-0 md:hidden  w-screen h-full bg-eazy-blue overflow-hidden"></div>

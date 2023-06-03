@@ -1,16 +1,19 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="content-wrapper">
-    <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-        <section class="max-w-screen-xl inside py-16 md:py-32 ">
+<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+    <section class="page-section">
+        <div class="section-wrapper">
+
             <div class="pb-16">
-                <div class="text-sm">
+                <div class="text-sm pb-4">
                     {% if curlang == 'en' %}
-                    <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a> >
+                    <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a>
+                    >
                     <a href="{{site.link}}/shop" class="underline">Eazy Green Shop</a>
                     {% else %}
-                    <a href="{{site.link}}/it/green-it" class="hover:underline">Eazy Green</a> >
+                    <a href="{{site.link}}/it/green-it" class="hover:underline">Eazy Green</a>
+                    >
                     <a href="{{site.link}}/it/shop-it" class="underline">Eazy Green Shop</a>
                     {% endif %}
                 </div>
@@ -24,26 +27,17 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
                 {% for post in prodotti %}
-                {% include ['tease-'~post.post_type~'.twig',
+                {% include ['tease-'~post.post_type~'-small.twig',
                 'tease.twig'] %}
                 {% endfor %}
             </div>
-        </section>
+    </section>
 
-        <section class="md:flex">
-            <div class="md:w-1/2">
+    {% include "partial/keep-in-touch.twig" with {'post': post} %}
 
-                {% include "partial/keep-in-touch.twig" with {'post': post} %}
-            </div>
-            <div class="md:w-1/2">
+    </div>
 
-                {% include "partial/form.twig"%}
-            </div>
-
-        </section>
-
-
-        {{ function('wp_footer') }}
-    </article>
-</div><!-- /content-wrapper -->
+    {{ function('wp_footer') }}
+</article>
+<!-- /content-wrapper -->
 {% endblock %}

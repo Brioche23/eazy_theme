@@ -118,6 +118,7 @@ class StarterSite extends Timber\Site
 		$context['stuff'] = 'I am a value set in your functions.php file';
 		$context['notes'] = 'These values are available everytime you call Timber::context();';
 		$context['menu']  = new Timber\Menu();
+		$context['menu_mobile']  = new Timber\Menu('Menu_Mobile');
 		$context['site']  = $this;
 		// Options
 		$context['options'] = get_fields('option');
@@ -273,7 +274,7 @@ add_action('init', function () {
 	pll_register_string('blank', 'blank');
 });
 
-
+wp_enqueue_style('hamburgers', get_template_directory_uri() . '/static/src/hamburgers/dist/hamburgers.css');
 wp_enqueue_style('swiper_css', 'https://unpkg.com/swiper@8/swiper-bundle.min.css');
 
 new StarterSite();
