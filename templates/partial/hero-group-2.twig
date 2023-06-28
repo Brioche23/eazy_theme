@@ -1,0 +1,13 @@
+<img src={{ Image(post.meta("hero_image")).src }} alt="boat" class="h-screen
+object-cover w-full brightness-75 md:brightness-100" />
+
+<div class="absolute bottom-0 left-0 inside w-full pb-12 sm:pb-32">
+  <div class="section-wrapper">
+    {% include "partial/hero-text.twig" with {'post': post} %}
+    <div class="flex flex-wrap space-x-0 sm:space-x-5">
+      <a href="/eazy-bunker" class="hero-button">Eazy Bunker</a>
+      <a href="/eazy-green" class="hero-button">Eazy Green</a>
+      <a href="/eazy-yachting" class="hero-button">Eazy Yachting</a>
+    </div>
+  </div>
+</div>

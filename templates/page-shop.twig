@@ -1,14 +1,15 @@
 {% extends "base.twig" %}
 
 {% block content %}
+{% include "partial/wa_button.twig" with {'number': options.green_wa} %}
 <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
     <section class="page-section">
         <div class="section-wrapper">
 
             <div class="pb-16">
-                <div class="text-sm pb-4">
+                <div class="text-sm py-5">
                     {% if curlang == 'en' %}
-                    <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a>
+                    <a href="{{site.link}}/eazy-green" class="hover:underline">Eazy Green</a>
                     >
                     <a href="{{site.link}}/shop" class="underline">Eazy Green Shop</a>
                     {% else %}

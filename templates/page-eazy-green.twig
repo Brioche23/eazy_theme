@@ -20,7 +20,7 @@
 					<div class="flex justify-between items-center pb-4">
 						<h5 class="text-sm uppercase tracking-widest">{{pll_e(type)}}
 							{{ pll_e('Eazy Green Shop') }}</h5>
-						<a href="{{site.link}}/shop" class="text-sm text-eazy-blue hover:underline">{{ pll_e('All Products') }}
+						<a href="{{site.link}}/shop" class="text-sm hover:underline">{{ pll_e('All Products') }}
 							></a>
 					</div>
 
@@ -31,7 +31,7 @@
 					</div>
 
 					<div class="grid sm:grid-cols-2 md:grid-cols-5 md:grid-rows-2 place-content-between gap-5 pt-8">
-						<div class="aspect-square sm:aspect-auto md:row-span-2 sm:col-span-2 ">
+						<div class="aspect-auto md:row-span-2 sm:col-span-2 ">
 
 							<img src="{{Image(post.meta('shop_image')).src | resize(750)}}" class="h-full w-full object-cover" alt="">
 						</div>
@@ -81,14 +81,14 @@
 					<h5 class="text-h5 pb-12">{{ pll_e('Let’s discover our collaborations') }}</h5>
 					{% set i = 0 %}
 					{% for item in post.meta('collaborations') %}
-						<a href="#" class="w-full md:flex group my-6 md:mb-12">
+						<a href="mailto:info@eazygreen.net" class="block w-full md:flex group my-6 md:mb-12">
 							<div class="aspect-[4/3] bg-eazy-blue md:w-1/2 overflow-hidden {{  i % 2  == 0 ? 'md:order-1' : 'md:order-2' }}">
 								<img src={{ Image(item.image).src }} class="object-cover h-full" alt=""/>
 							</div>
-							<div class="md:w-1/2 bg-white px-12 py-24 flex flex-col justify-between {{  i % 2  == 0 ? 'md:order-2' : 'md:order-1' }}">
+							<div class="md:w-1/2 bg-white px-6 md:px-12 py-12 md:py-24 flex flex-col justify-between {{  i % 2  == 0 ? 'md:order-2' : 'md:order-1' }}">
 								<div class="transform group-hover:-translate-y-5  duration-300 ease-in-out mb-3">
 									<h6 class="text-h5 pb-3">{{item.name}}</h6>
-									<p class="text-xl lg:text-3xl text-eazy-blue">{{item.abstract}}</p>
+									<p class="text-lg md:text-xl lg:text-3xl text-eazy-blue">{{item.abstract}}</p>
 								</div>
 								<div>
 									<p class="text-h5 underline">{{ pll_e('Contact us') }}</p>
@@ -109,15 +109,14 @@
 					<p class="md:w-2/3">
 						{{post.meta('green_goals_text')}}
 					</p>
-					<div class="flex mx-auto
-																																																																																																																																																																																																																																																																																														                 max-w-2xl justify-between pt-16">
+					<div class="flex mx-auto max-w-2xl justify-between pt-16">
 
 
 						{% for icon in post.meta('green_goals_icons') %}
 
-							<figure class="align-middle space-y-8">
-								<img src={{ Image(icon.icon).src }} class=" h-28 mx-auto" alt=""/>
-								<figcaption class="text-center text-lg">{{icon.text}}</figcaption>
+							<figure class="align-middle space-y-8 w-1/3 md:px-4">
+								<img src={{ Image(icon.icon).src }} class="aspect-square w-full mx-auto" alt=""/>
+								<figcaption class="text-center text-xs md:text-lg">{{icon.text}}</figcaption>
 							</figure>
 
 

@@ -1,6 +1,7 @@
-<img src={{ Image(post.meta('hero_image')).src }} alt="boat" class="object-cover h-full w-full " />
-<section class="absolute bottom-0 w-full inside">
-	<div class="section-wrapper pb-32 md:pb-16 lg:pb-32 ">
+
+<img src={{ Image(post.meta('hero_image')).src }} alt="boat" class="object-cover h-screen md:h-full w-full brightness-75 md:brightness-100" />
+<section class="absolute bottom-0 w-full inside pb-12 md:pb-32">
+	<div class="section-wrapper">
 		<!-- Hero Text -->
 		{% include "partial/hero-text.twig" with {'post': post} %}
 

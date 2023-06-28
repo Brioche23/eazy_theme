@@ -7,7 +7,7 @@
 }
 
 .page-section {
-  @apply py-16 md:py-32 text-eazy-dark inside;
+  @apply py-24 md:py-32 text-eazy-dark inside;
 }
 
 .section-wrapper {
@@ -15,7 +15,7 @@
 }
 
 .hero {
-  @apply bg-eazy-dark relative text-white w-full h-screen md:h-auto md:aspect-video md:overflow-hidden z-0;
+  @apply bg-eazy-dark relative text-white w-full h-screen md:aspect-video md:overflow-hidden z-0;
 }
 
 .text-h2 {
@@ -73,3 +73,13 @@
 /* #wpadminbar {
   @apply hidden;
 } */
+
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
+
+body * {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

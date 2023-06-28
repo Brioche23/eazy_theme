@@ -1,14 +1,15 @@
 {% extends "base.twig" %}
 
 {% block content %}
+{% include "partial/wa_button.twig" with {'number': options.group_wa} %}
 <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
     <section class="page-section bg-eazy-cream">
         <div class="section-wrapper">
-            <div class="text-sm md:w-1/2">
+            <div class="text-sm py-5 md:w-1/2">
 
 
                 {% if curlang == 'en' %}
-                <a href="{{site.link}}/green" class="hover:underline">Eazy Green</a>
+                <a href="{{site.link}}/eazy-green" class="hover:underline">Eazy Green</a>
                 >
                 <a href="{{site.link}}/shop" class="hover:underline">Eazy Green Shop</a>
                 >
@@ -54,7 +55,7 @@
 
                     </p>
 
-                    <a href="mailto:">
+                    <a href="mailto:info@eazygreen.net">
 
                         <button
                             class="w-full md:w-1/2 mt-5 inline-flex items-center justify-center px-6 py-3 border border-transparent shadow-sm text-base uppercase tracking-widest text-white bg-eazy-pink transition-all duration-300 hover:bg-eazy-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-eazy-blue rounded-full">
@@ -91,7 +92,7 @@
     <section class="page-section">
         <div class="section-wrapper">
 
-            <p class=" uppercase pb-5">
+            <p class=" uppercase pb-10">
                 {{pll_e('Other products you might like')}}
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 ">

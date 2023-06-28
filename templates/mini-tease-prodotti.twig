@@ -1,22 +1,36 @@
-<article class="tease tease-{{post.post_type}}" id="tease-{{post.ID}}">
-    {% block content %}
+<article class="tease tease-{{ post.post_type }}" id="tease-{{ post.ID }}">
+  {% block content %}
 
+  <a href="{{ post.link }}" class="group">
+    <div
+      class="p-3 group-hover:bg-eazy-pink transition-all flex flex-col h-full"
+    >
+      <div class="bg-eazy-pink aspect-square w-full">
+        {% if post.get_thumbnail %}
+        <img
+          src="{{post.thumbnail.src|resize(500)}}"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+        {% endif %}
+      </div>
+      <div class="pt-5 space-y-2 flex flex-col justify-between flex-1">
+        <p
+          class="font-medium text-eazy-pink group-hover:text-eazy-cream transition-all px-0"
+        >
+          {{ post.title }}
+        </p>
+      </div>
+      <div class="flex place-content-between space-x-4 pt-4">
+        <p class="text-sm text-eazy-dark">{{ post.meta("prezzo") }}€</p>
+        <img
+          src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
+          class="transform group-hover:-translate-x-10 transition duration-300 ease-in-out"
+          alt="arrow"
+        />
+      </div>
+    </div>
+  </a>
 
-    <a href="{{post.link}}" class="group ">
-        <div class="my-5 p-3 group-hover:bg-eazy-pink transition-all">
-            <div class="bg-eazy-pink aspect-square w-full">
-                {% if post.get_thumbnail %}
-                <img src={{post.thumbnail.src| resize(500) }} alt="" class="h-full w-full object-cover" />
-                {% endif %}
-            </div>
-            <div class="pt-5 space-y-2">
-                <p class="font-medium text-eazy-pink group-hover:text-eazy-cream transition-all px-0">{{post.title}}</p>
-                <p class="text-eazy-dark px-0">{{post.meta('prezzo')}}€</p>
-            </div>
-        </div>
-    </a>
-
-
-
-    {% endblock %}
+  {% endblock %}
 </article>

@@ -1,6 +1,7 @@
 {% extends "base.twig" %}
 
 {% block content %}
+{% include "partial/wa_button.twig" with {'number': options.group_wa} %}
 	<div class="content-wrapper">
 		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
 			<section class="page-section ">
