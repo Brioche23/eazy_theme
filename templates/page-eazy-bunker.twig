@@ -21,22 +21,22 @@
 							{% for point in post.meta('touchpoints') %}
 
 								<div class="" x-data="{
-																																																																													                            open: false,
-																																																																													                            toggle() {
-																																																																													                              if (this.open) {return this.close()}
-																																																																													                              this.open = true
-																																																																													                            },
-																																																																													                            close(focusAfter) {
-																																																																													                              if (! this.open) return
-																																																																													                              this.open = false
-																																																																													                              focusAfter && focusAfter.focus()
-																																																																													                            }
-																																																																													                          }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.content.contains($event.target) " x-id="['dropdown-button']">
+																																																																																															                            open: false,
+																																																																																															                            toggle() {
+																																																																																															                              if (this.open) {return this.close()}
+																																																																																															                              this.open = true
+																																																																																															                            },
+																																																																																															                            close(focusAfter) {
+																																																																																															                              if (! this.open) return
+																																																																																															                              this.open = false
+																																																																																															                              focusAfter && focusAfter.focus()
+																																																																																															                            }
+																																																																																															                          }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.content.contains($event.target) " x-id="['dropdown-button']">
 									<button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left" x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')" aria-expanded="true" aria-controls="dropdown-button-1">
 										<p class="uppercase text-eazy-blue">{{point.title}}</p>
 										<div>
 											<span x-show="open" aria-hidden="true" class="">&minus;</span>
-											<span x-show="!open" aria-hidden="true" class="">&plus;</span>
+											<span x-show="!open" aria-hidden="true" class="">&#43;</span>
 										</div>
 									</button>
 									<div class="accordion-border">
@@ -91,22 +91,22 @@
 
 									<img src={{ Image(ps.icon).src }} class="h-20" alt="">
 									<div class="w-full ml-5" x-data="{
-																																																												                              open: false,
-																																																												                              toggle() {
-																																																												                                if (this.open) {return this.close()}
-																																																												                                this.open = true
-																																																												                              },
-																																																												                              close(focusAfter) {
-																																																												                                if (! this.open) return
-																																																												                                this.open = false
-																																																												                                focusAfter && focusAfter.focus()
-																																																												                              }
-																																																												                            }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.ps.contains($event.target) " x-id="['dropdown-button']">
+																																																																																                              open: false,
+																																																																																                              toggle() {
+																																																																																                                if (this.open) {return this.close()}
+																																																																																                                this.open = true
+																																																																																                              },
+																																																																																                              close(focusAfter) {
+																																																																																                                if (! this.open) return
+																																																																																                                this.open = false
+																																																																																                                focusAfter && focusAfter.focus()
+																																																																																                              }
+																																																																																                            }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.ps.contains($event.target) " x-id="['dropdown-button']">
 										<button type="button" class="flex justify-between items-center py-4 w-full text-left" x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')" aria-expanded="true" aria-controls="dropdown-button-1">
 											<p class="uppercase text-eazy-blue">{{ps.service_name}}</p>
 											<div>
 												<span x-show="open" aria-hidden="true" class="">&minus;</span>
-												<span x-show="!open" aria-hidden="true" class="">&plus;</span>
+												<span x-show="!open" aria-hidden="true" class="">&#43;</span>
 											</div>
 										</button>
 										<div class="accordion-border">
@@ -132,22 +132,22 @@
 
 									<img src={{ Image(ss.icon).src }} class="h-20" alt="">
 									<div class="w-full ml-5" x-data="{
-																																																												                 open: false,
-																																																												                 toggle() {
-																																																												                   if (this.open) {return this.close()}
-																																																												                   this.open = true
-																																																												                 },
-																																																												                 close(focusAfter) {
-																																																												                   if (! this.open) return
-																																																												                   this.open = false
-																																																												                   focusAfter && focusAfter.focus()
-																																																												                 }
-																																																												               }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.ss.contains($event.target) " x-id="['dropdown-button']">
+																																																																																                 open: false,
+																																																																																                 toggle() {
+																																																																																                   if (this.open) {return this.close()}
+																																																																																                   this.open = true
+																																																																																                 },
+																																																																																                 close(focusAfter) {
+																																																																																                   if (! this.open) return
+																																																																																                   this.open = false
+																																																																																                   focusAfter && focusAfter.focus()
+																																																																																                 }
+																																																																																               }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.ss.contains($event.target) " x-id="['dropdown-button']">
 										<button type="button" class="flex justify-between items-center py-4  w-full text-left " x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')" aria-expanded="true" aria-controls="dropdown-button-1">
 											<p class="uppercase text-eazy-blue">{{ss.service_name}}</p>
 											<div>
 												<span x-show="open" aria-hidden="true" class="">&minus;</span>
-												<span x-show="!open" aria-hidden="true" class="">&plus;</span>
+												<span x-show="!open" aria-hidden="true" class="">&#43;</span>
 											</div>
 										</button>
 										<div class="accordion-border">

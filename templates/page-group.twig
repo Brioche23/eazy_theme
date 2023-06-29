@@ -1,192 +1,183 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="content-wrapper">
-	<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-		{% include "partial/wa_button.twig" with {'number': options.group_wa} %}
+	<div class="content-wrapper">
+		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+			{% include "partial/wa_button.twig" with {'number': options.group_wa} %}
 
-		{# hero #}
-		<section class="hero ">
-			{% include "partial/hero-group-2.twig" with {'post': post} %}
-		</section>
-		<!-- about -->
-		<section class="bg-white page-section">
-			{% include "partial/about.twig" with {'post': post} %}
-		</section>
-		<!-- Companies -->
-		<!-- TODO Switch order -->
-		<section class="bg-eazy-cream page-section">
-			<div class="section-wrapper">
-				<h5 class="text-sm uppercase tracking-widest pb-12">{{ pll_e('lets_discover') }}</h5>
-				{% set i = 0 %}
-				{% for item in post.meta('companies') %}
-				<a href="{{item.url}}" class="block w-full md:flex group my-6 md:my-12">
-					<div
-						class="aspect-[4/3] bg-eazy-blue md:w-1/2 overflow-hidden {{  i % 2  == 0 ? 'md:order-1' : 'md:order-2' }}">
-						<img src={{ Image(item.image).src }} alt="" class="h-full w-full object-cover" />
-					</div>
-					<div
-						class="md:w-1/2 bg-white px-6 md:px-12 py-12 md:py-24 flex flex-col justify-between {{  i % 2  == 0 ? 'md:order-2' : 'md:order-1' }}">
-						<div class="transform group-hover:-translate-y-5  duration-300 ease-in-out mb-3">
-							<h6 class="text-sm uppercase tracking-widest pb-3">{{item.name}}</h6>
-							<p class="text-lg md:text-xl text-eazy-blue">{{item.abstract}}</p>
-						</div>
-						<div class="pt-4">
-							<p class="text-sm uppercase tracking-widest">{{ pll_e('discover') }}
-								{{item.name}}</p>
-							<img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg"
-								class="pt-3 transform group-hover:translate-x-6 duration-300 ease-in-out" alt="arrow" />
-						</div>
-					</div>
-
-					{% set i = i + 1 %}
-				</a>
-				{% endfor %}
-			</div>
-		</section>
-		<!-- Team -->
-		<!-- TODO Integrate first member -->
-		<section class="bg-white page-section">
-			<div class="section-wrapper">
-				<div class="section-wrapper md:flex md:space-x-20 md:items-center pb-8">
-					<div class="md:w-1/2">
-						<h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">Team</h5>
-						<p class="text-h2 text-eazy-blue">{{post.meta('team_h2')}}</p>
-					</div>
-					<div class="md:w-1/2 pt-4 md:pt-0">
-						<p>{{post.meta('team_abstract')}}
-						</p>
-					</div>
-				</div>
-				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16  md:pt-24 content-start"
-					x-data="{ active: false }">
-
-					<!-- Team member-->
-					{% set j = 0 %}
-
-					{% for member in post.meta('team_members') %}
-
-					{% if j == 0 %}
-					<div class="bg-eazy-blue  w-full">
-						{% if member.picture %}
-						<img src={{ Image(member.picture).src | resize(500) }} alt=""
-							class="h-full w-full object-cover " />
-						{% endif %}
-					</div>
-					<div class="md:col-span-2 flex flex-col justify-between">
-						<div>
-							<p class="font-medium text-eazy-blue">{{member.name}}</p>
-							<p class="font-light text-eazy-blue">{{member.role}}</p>
-							<p class="pt-4 lg:text-xl">
-								{{member.bio}}
-							</p>
-						</div>
-						<div class="w-full lg:w-2/3">
-							<p class="text-eazy-blue text-lg md:text-2xl lg:text-3xl pt-4">{{member.quote}}</p>
-						</div>
-					</div>
-
-					{% else %}
-
-					<div class="my-5 " x-data="{
-									                        open: false,
-									                        toggle() {
-									                          if (this.open) {return this.close()}
-									                          this.open = true
-									                        },
-									                        close(focusAfter) {
-									                          if (! this.open) return
-									                          this.open = false
-									                          focusAfter && focusAfter.focus()
-									                        }
-									                      }" x-on:keydown.escape.prevent.stop="close($refs.button)"
-						x-on:focusin.window="! $refs.bio.contains($event.target) " x-id="['dropdown-button']">
-						<div class="bg-eazy-blue  w-full">
-							{% if member.picture %}
-							<img src={{ Image(member.picture).src | resize(500) }} alt=""
-								class="h-full w-full object-cover" />
-							{% endif %}
-
-						</div>
-						{% if member.cagnolino == false%}
-						<button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left"
-							x-ref="button" x-on:click="toggle()" :aria-expanded="open"
-							:aria-controls="$id('dropdown-button')" aria-expanded="true"
-							aria-controls="dropdown-button-1">
-							<div>
-								<p class="font-medium text-eazy-blue px-0">{{member.name}}</p>
-								<p class="text-eazy-blue px-0">{{member.role}}</p>
+			{# hero #}
+			<section class="hero ">
+				{% include "partial/hero-group-2.twig" with {'post': post} %}
+			</section>
+			<!-- about -->
+			<section class="bg-white page-section">
+				{% include "partial/about.twig" with {'post': post} %}
+			</section>
+			<!-- Companies -->
+			<!-- TODO Switch order -->
+			<section class="bg-eazy-cream page-section">
+				<div class="section-wrapper">
+					<h5 class="text-sm uppercase tracking-widest pb-12">{{ pll_e('lets_discover') }}</h5>
+					{% set i = 0 %}
+					{% for item in post.meta('companies') %}
+						<a href="{{item.url}}" class="block w-full md:flex group my-6 md:my-12">
+							<div class="aspect-[4/3] bg-eazy-blue md:w-1/2 overflow-hidden {{  i % 2  == 0 ? 'md:order-1' : 'md:order-2' }}">
+								<img src={{ Image(item.image).src }} alt="" class="h-full w-full object-cover"/>
 							</div>
-							<div>
-								<span x-show="open" aria-hidden="true" class="">&minus;</span>
-								<span x-show="!open" aria-hidden="true" class="">&plus;</span>
-							</div>
-						</button>
-						{% else %}
-						<div class="flex justify-between items-center py-4 px-0 w-full text-left">
-							<div>
-								<p class="font-medium text-eazy-blue px-0">{{member.name}}</p>
-								<p class="text-eazy-blue px-0">{{member.role}}</p>
-							</div>
-
-						</div>
-						{% endif %}
-
-						<div class="accordion-border">
-
-							<span x-show="!open" aria-hidden="true">
-
-							</span>
-							<div x-ref="bio" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
-								<div class="py-4 font-light text-eazy-dark ">
-									{{member.bio}}
+							<div class="md:w-1/2 bg-white px-6 md:px-12 py-12 md:py-24 flex flex-col justify-between {{  i % 2  == 0 ? 'md:order-2' : 'md:order-1' }}">
+								<div class="transform group-hover:-translate-y-5  duration-300 ease-in-out mb-3">
+									<h6 class="text-sm uppercase tracking-widest pb-3">{{item.name}}</h6>
+									<p class="text-lg md:text-xl text-eazy-blue">{{item.abstract}}</p>
+								</div>
+								<div class="pt-4">
+									<p class="text-sm uppercase tracking-widest">{{ pll_e('discover') }}
+										{{item.name}}</p>
+									<img src="{{ site.theme.link }}/static/assets/svg/freccialink.svg" class="pt-3 transform group-hover:translate-x-6 duration-300 ease-in-out" alt="arrow"/>
 								</div>
 							</div>
+
+							{% set i = i + 1 %}
+						</a>
+					{% endfor %}
+				</div>
+			</section>
+			<!-- Team -->
+			<!-- TODO Integrate first member -->
+			<section class="bg-white page-section">
+				<div class="section-wrapper">
+					<div class="section-wrapper md:flex md:space-x-20 md:items-center pb-8">
+						<div class="md:w-1/2">
+							<h5 class="text-xs md:text-sm uppercase tracking-widest pb-3">Team</h5>
+							<p class="text-h2 text-eazy-blue">{{post.meta('team_h2')}}</p>
+						</div>
+						<div class="md:w-1/2 pt-4 md:pt-0">
+							<p>{{post.meta('team_abstract')}}
+							</p>
 						</div>
 					</div>
-					{% endif %}
+					<div
+						class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16  md:pt-24 content-start" x-data="{ active: false }">
 
-					{% set j = j + 1 %}
+						<!-- Team member-->
+						{% set j = 0 %}
 
-					{% endfor %}
+						{% for member in post.meta('team_members') %}
 
-				</div>
-			</div>
-		</section>
-		{% block news_list %}
-		{% include 'partial/news-list.twig' with {'type': 'Latest' } %}
-		{% endblock %}
-		<!-- Partners -->
-		{% if post.meta('partners') %}
-		<section class="bg-white page-section">
-			<div class="section-wrapper">
-				<h5 class="text-sm uppercase tracking-widest pb-3">Partners</h5>
-				<div
-					class="flex flex-nowrap overflow-scroll md:overflow-auto w-full items-center justify-between space-x-5 space-y-5 pt-8">
-					{% for partner in post.meta('partners') %}
-					<div class="h-full">
-						<a href="{{partner.url}}" target="_blank" class="h-16 md:h-24 w-auto">
-							<!-- <img src="{{ Image(partner.logo).src }}" alt="{{ Image(partner.logo).alt }}"
-																		class="h-24 md:h-32" /> -->
-							<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 876.216 876.204"
-								height="{{partner.size}}" class="fill-eazy-blue hover:fill-eazy-light-blue ">
+							{% if j == 0 %}
+								<div class="bg-eazy-blue  w-full">
+									{% if member.picture %}
+										<img src={{ Image(member.picture).src | resize(500) }} alt="" class="h-full w-full object-cover "/>
+									{% endif %}
+								</div>
+								<div class="md:col-span-2 flex flex-col justify-between">
+									<div>
+										<p class="font-medium text-eazy-blue">{{member.name}}</p>
+										<p class="font-light text-eazy-blue">{{member.role}}</p>
+										<p class="pt-4 lg:text-xl">
+											{{member.bio}}
+										</p>
+									</div>
+									<div class="w-full lg:w-2/3">
+										<p class="text-eazy-blue text-lg md:text-2xl lg:text-3xl pt-4">{{member.quote}}</p>
+									</div>
+								</div>
 
-								{{partner.svg_code}}
-							</svg>
-						</a>
+							{% else %}
+
+								<div class="my-5 " x-data="{
+																																													                        open: false,
+																																													                        toggle() {
+																																													                          if (this.open) {return this.close()}
+																																													                          this.open = true
+																																													                        },
+																																													                        close(focusAfter) {
+																																													                          if (! this.open) return
+																																													                          this.open = false
+																																													                          focusAfter && focusAfter.focus()
+																																													                        }
+																																													                      }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.bio.contains($event.target) " x-id="['dropdown-button']">
+									<div class="bg-eazy-blue  w-full">
+										{% if member.picture %}
+											<img src={{ Image(member.picture).src | resize(500) }} alt="" class="h-full w-full object-cover"/>
+										{% endif %}
+
+									</div>
+									{% if member.cagnolino == false%}
+										<button type="button" class="flex justify-between items-center py-4 px-0 w-full text-left" x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')" aria-expanded="true" aria-controls="dropdown-button-1">
+											<div>
+												<p class="font-medium text-eazy-blue px-0">{{member.name}}</p>
+												<p class="text-eazy-blue px-0">{{member.role}}</p>
+											</div>
+											<div>
+												<span x-show="open" aria-hidden="true" class="">&minus;</span>
+												<span x-show="!open" aria-hidden="true" class="">&#43;</span>
+											</div>
+										</button>
+									{% else %}
+										<div class="flex justify-between items-center py-4 px-0 w-full text-left">
+											<div>
+												<p class="font-medium text-eazy-blue px-0">{{member.name}}</p>
+												<p class="text-eazy-blue px-0">{{member.role}}</p>
+											</div>
+
+										</div>
+									{% endif %}
+
+									<div class="accordion-border">
+
+										<span x-show="!open" aria-hidden="true"></span>
+										<div x-ref="bio" x-show="open" x-collapse.duration.600ms id="dropdown-button-1">
+											<div class="py-4 font-light text-eazy-dark ">
+												{{member.bio}}
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+
+							{% set j = j + 1 %}
+
+						{% endfor %}
+
 					</div>
-					{% endfor %}
-
 				</div>
-			</div>
-		</section>
+			</section>
+			{% block news_list %}
+				{% include 'partial/news-list.twig' with {'type': 'Latest' } %}
+			{% endblock %}
+			<!-- Partners -->
+			{% if post.meta('partners') %}
+				<section class="bg-white page-section">
+					<div class="section-wrapper">
+						<h5 class="text-sm uppercase tracking-widest pb-3">Partners</h5>
+						<div class="flex flex-nowrap overflow-scroll md:overflow-auto w-full items-center justify-between space-x-5 space-y-5 pt-8">
+							{% for partner in post.meta('partners') %}
+								<div class="h-full">
+									<a
+										href="{{partner.url}}" target="_blank" class="h-16 md:h-24 w-auto">
+										<!-- <img src="{{ Image(partner.logo).src }}" alt="{{ Image(partner.logo).alt }}"
+																																						class="h-24 md:h-32" /> -->
+										<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 {{partner.viewbox_x}} {{partner.viewbox_y}}" height="{{partner.size}}" class="fill-eazy-blue hover:fill-eazy-light-blue ">
+											<g>
 
-		{% endif %}
-		{% block form %}
-		{% include 'partial/form.twig' %}
-		{{ function('wp_footer') }}
-		{% endblock %}
-	</article>
-</div>
-<!-- /content-wrapper -->
+
+												{{partner.svg_code}}
+											</g>
+										</svg>
+									</a>
+								</div>
+							{% endfor %}
+
+						</div>
+					</div>
+				</section>
+
+			{% endif %}
+			{% block form %}
+				{% include 'partial/form.twig' %}
+				{{ function('wp_footer') }}
+			{% endblock %}
+		</article>
+	</div>
+	<!-- /content-wrapper -->
 {% endblock %}
